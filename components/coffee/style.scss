@@ -1,0 +1,99 @@
+.coffeeContainer {
+    padding: 16px;
+    padding-bottom: 0;
+
+    &:last-of-type {
+        padding-bottom: 16px;
+    }
+
+    .coffee {
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+        padding: 16px;
+    }
+
+    .q {
+        position: relative;
+        padding: 8px;
+        padding-left: 0;
+
+        .name {
+            padding-left: 16px;
+            color: #009ee3;
+
+            span {
+                color: #666;
+            }
+        }
+
+        .text {
+            display: block;
+            margin-top: 8px;
+            padding-left: 16px;
+            color: #333;
+            white-space: pre-wrap;
+        }
+
+        &:before {
+            content: "";
+            width: 3px;
+            background-color: #009ee3;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    .answer {
+        margin-top: 16px;
+        color: #333;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .buttons {
+        display: flex;
+
+        button {
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .dangerButton {
+        width: 40%;
+        color: #570011;
+        background-color: #e64c41;
+    }
+
+    button {
+        padding: 8px 32px;
+        font-size: 16px;
+        border: 0;
+        background-color: rgba(65, 137, 230, 0.15);
+        color: #009ee3;
+        width: 100%;
+        border-radius: 4px;
+        margin-top: 8px;
+        cursor: pointer;
+    }
+
+    textarea {
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        border: 0;
+        width: 100%;
+        height: 100px;
+        font-size: 16px;
+        padding: 16px;
+        box-sizing: border-box;
+        margin-top: 16px;
+    }
+
+    @media only screen and (min-width: 768px) {
+        width: 700px;
+        margin: 0 auto;
+    }
+}

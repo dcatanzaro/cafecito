@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/fonts/ProximaNovaThin.otf");
+    font-style: normal;
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/fonts/ProximaNovaRegular.otf");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/fonts/ProximaNovaBold.otf");
+    font-style: normal;
+    font-weight: 700;
+}
+
+* {
+    font-family: Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto,
+        Arial, sans-serif;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+
+    background: #ededed;
+}

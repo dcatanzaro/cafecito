@@ -1,0 +1,47 @@
+.modalAddEventContainer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+
+    .modalContainer {
+        border-radius: 6px;
+        background-color: white;
+        width: 100%;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+
+        header {
+            padding: 16px;
+            font-size: 18px;
+            background-color: #cadffa;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-radius: 6px 6px 0 0;
+
+            svg {
+                font-size: 20px;
+                padding: 16px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                cursor: pointer;
+            }
+        }
+
+        .formContainer {
+            padding: 16px;
+
+            img {
+                margin-top: 16px;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}

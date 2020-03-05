@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+    cafecito:
+        container_name: cafecito
+        image: cafecito
+        restart: always
+        build: .
+        environment:
+            NODE_ENV: production
+        ports:
+            - 3000:3000
+        logging:
+            options:
+                max-size: 50m
+        links:
+            - mongo
+    mongo:
+        container_name: mongo
+        image: mongo
+        restart: always
+        ports:
+            - "27017:27017"

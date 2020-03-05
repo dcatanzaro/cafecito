@@ -1,0 +1,38 @@
+.title,
+.titleDescription {
+    padding: 0 16px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.titleDescription {
+    padding-top: 16px;
+}
+
+.waitingCoffee {
+    padding: 16px;
+
+    span {
+        display: block;
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+        padding: 16px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .title,
+    .titleDescription {
+        width: 700px;
+        margin: 0 auto;
+    }
+
+    .titleDescription {
+        margin-bottom: 16px;
+    }
+
+    .title {
+        margin-top: 16px;
+    }
+}

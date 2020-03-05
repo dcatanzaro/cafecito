@@ -1,0 +1,32 @@
+.postContainer {
+    padding: 16px;
+
+    .post {
+        background-color: white;
+        border-radius: 6px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        border-left: 4px solid #009ee3;
+
+        p {
+            margin: 0;
+            padding: 0;
+            margin-bottom: 16px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            a {
+                color: #147cbb;
+                text-decoration: none;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        padding: 0;
+        width: 700px;
+        margin: 0 auto;
+    }
+}
