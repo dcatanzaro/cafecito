@@ -9,7 +9,8 @@ const withSass = require("@zeit/next-sass");
 module.exports = withSass({
     env: {
         BRANCH: process.env.BRANCH,
-        URL: process.env.URL
+        URL: process.env.URL,
+        SHOW_DATE_COFFEE: process.env.SHOW_DATE_COFFEE === "true" ? true : false
     },
     cssModules: true,
     cssLoaderOptions: {

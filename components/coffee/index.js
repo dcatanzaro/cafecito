@@ -4,8 +4,6 @@ import style from "./style.scss";
 import axios from "axios";
 import dayjs from "dayjs";
 
-const isDev = process.env.NODE_ENV !== "production";
-
 class Coffee extends React.Component {
     constructor(props) {
         super(props);
@@ -84,6 +82,9 @@ class Coffee extends React.Component {
     render() {
         const { coffee, isAdmin } = this.props;
         const { openTextInput, answer } = this.state;
+        const { SHOW_DATE_COFFEE } = process.env;
+
+        console.log(SHOW_DATE_COFFEE);
 
         return (
             <section className={style.coffeeContainer}>
@@ -91,9 +92,16 @@ class Coffee extends React.Component {
                     <div className={style.q}>
                         <div className={style.name}>
                             {coffee.name ? coffee.name : "Anónimo"}{" "}
-                            <span>{`regaló ${coffee.countCoffees} ${
-                                coffee.countCoffees > 1 ? "cafés" : "café"
-                            }`} {process.env.ShowCreatedAt ? `el ${coffee.createdAt}` : ""}</span>
+                            <span>
+                                {`regaló ${coffee.countCoffees} ${
+                                    coffee.countCoffees > 1 ? "cafés" : "café"
+                                }`}{" "}
+                                {SHOW_DATE_COFFEE
+                                    ? `el ${dayjs(coffee.createdAt).format(
+                                          "DD-MM-YYYY"
+                                      )}`
+                                    : ""}
+                            </span>
                         </div>
                         {coffee.message && (
                             <span className={style.text}>{coffee.message}</span>
