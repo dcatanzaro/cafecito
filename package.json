@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "NODE_ENV=development nodemon server.js",
+        "dev": "cross-env NODE_ENV=development nodemon server.js",
         "build": "next build",
-        "start": "NODE_ENV=production node server.js"
+        "start": "cross-env NODE_ENV=production node server.js"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.27",
@@ -27,5 +27,8 @@
         "react": "^16.13.0",
         "react-dom": "^16.13.0",
         "react-twitter-widgets": "^1.7.1"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.2"
     }
 }
