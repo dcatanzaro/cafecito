@@ -93,7 +93,7 @@ class Coffee extends React.Component {
                             {coffee.name ? coffee.name : "Anónimo"}{" "}
                             <span>{`regaló ${coffee.countCoffees} ${
                                 coffee.countCoffees > 1 ? "cafés" : "café"
-                            }`}</span>
+                            }`} {process.env.ShowCreatedAt ? `el ${coffee.createdAt}` : ""}</span>
                         </div>
                         {coffee.message && (
                             <span className={style.text}>{coffee.message}</span>
