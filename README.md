@@ -41,6 +41,9 @@ ACCESS_KEY_MP=
 
 PASSWORD_EDITOR=nuestra_password
 URL=http://localhost:3000
+
+# If you want see or hide CreatedAt field on Coffees List (components/coffee/index.js)
+SHOW_DATE_COFFEE=false
 ```
 
 ## Para producción: crear el archivo .env con su configuración
@@ -61,6 +64,9 @@ ACCESS_KEY_MP=
 
 PASSWORD_EDITOR=nuestra_password
 URL=http://localhost:3000
+
+# If you want see or hide CreatedAt field on Coffees List (components/coffee/index.js)
+SHOW_DATE_COFFEE=false
 ```
 
 ## Para correr entorno de desarrollo
