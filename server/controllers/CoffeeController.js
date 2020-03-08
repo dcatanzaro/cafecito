@@ -65,7 +65,13 @@ class CoffeeController {
     getCoffees = async (req, res) => {
         const coffees = await this.coffeeService.getCoffees();
 
-        return res.json(coffees);
+        let countCoffees = 0;
+
+        coffees.map(coffe => {
+            countCoffees += coffe.countCoffees;
+        });
+
+        return res.json({ coffees, countCoffees });
     };
 
     savePayment = async (req, res) => {

@@ -62,59 +62,83 @@ class InputText extends React.Component {
 
                             <span className={style.multiplier}>x</span>
 
-                            <input
-                                type="text"
-                                placeholder="1"
-                                value={countCoffees}
-                                onChange={e => {
-                                    this.setState({
-                                        countCoffees: e.target.value
-                                    });
-                                }}
-                            />
+                            <div className={style.countCoffeesContainer}>
+                                <button
+                                    onClick={() => {
+                                        if (countCoffees > 1) {
+                                            this.setState({
+                                                countCoffees: countCoffees - 1
+                                            });
+                                        }
+                                    }}
+                                >
+                                    -
+                                </button>
+                                <input
+                                    type="text"
+                                    placeholder="1"
+                                    value={countCoffees}
+                                    onChange={e => {
+                                        this.setState({
+                                            countCoffees: e.target.value
+                                        });
+                                    }}
+                                />
+                                <button
+                                    onClick={() => {
+                                        this.setState({
+                                            countCoffees: countCoffees + 1
+                                        });
+                                    }}
+                                >
+                                    +
+                                </button>
+                            </div>
 
-                            <button
-                                className={`${
-                                    parseInt(countCoffees) === 1
-                                        ? style.selected
-                                        : null
-                                }`}
-                                onClick={() => {
-                                    this.setState({
-                                        countCoffees: 1
-                                    });
-                                }}
-                            >
-                                1
-                            </button>
-                            <button
-                                className={`${
-                                    parseInt(countCoffees) === 3
-                                        ? style.selected
-                                        : null
-                                }`}
-                                onClick={() => {
-                                    this.setState({
-                                        countCoffees: 3
-                                    });
-                                }}
-                            >
-                                3
-                            </button>
-                            <button
-                                className={`${
-                                    parseInt(countCoffees) === 5
-                                        ? style.selected
-                                        : null
-                                }`}
-                                onClick={() => {
-                                    this.setState({
-                                        countCoffees: 5
-                                    });
-                                }}
-                            >
-                                5
-                            </button>
+                            <div className={style.buttonCoffeesContainer}>
+                                <button
+                                    className={`${
+                                        parseInt(countCoffees) === 1
+                                            ? style.selected
+                                            : null
+                                    }`}
+                                    onClick={() => {
+                                        this.setState({
+                                            countCoffees: 1
+                                        });
+                                    }}
+                                >
+                                    1
+                                </button>
+                                <button
+                                    className={`${
+                                        parseInt(countCoffees) === 3
+                                            ? style.selected
+                                            : null
+                                    }`}
+                                    onClick={() => {
+                                        this.setState({
+                                            countCoffees: 3
+                                        });
+                                    }}
+                                >
+                                    3
+                                </button>
+                                <button
+                                    className={`${
+                                        parseInt(countCoffees) === 5
+                                            ? style.selected
+                                            : null
+                                    }`}
+                                    onClick={() => {
+                                        this.setState({
+                                            countCoffees: 5
+                                        });
+                                    }}
+                                >
+                                    5
+                                </button>
+                            </div>
                         </div>
 
                         <input
@@ -127,6 +151,7 @@ class InputText extends React.Component {
                                 });
                             }}
                         />
+
                         <textarea
                             maxLength="500"
                             placeholder="Mensaje (opcional)"

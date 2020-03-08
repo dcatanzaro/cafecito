@@ -1,7 +1,12 @@
 .inputText {
-    background-color: white;
+    background-color: var(--boxBackground);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
     padding: 16px;
+    position: relative;
+
+    span {
+        color: var(--textBlack);
+    }
 
     .loading {
         button {
@@ -25,6 +30,7 @@
                 position: absolute;
                 font-size: 10px;
                 margin: 0;
+                color: var(--textGray);
             }
         }
 
@@ -36,7 +42,7 @@
         }
 
         .selected {
-            background-color: rgba(65, 137, 230, 0.15);
+            background-color: var(--buttonBackground);
         }
 
         input {
@@ -44,37 +50,78 @@
             width: 50px;
             height: 50px;
             text-align: center;
-            margin-right: 10px;
             font-size: 18px;
+            border-radius: 0;
         }
 
         button {
             margin: 0;
-            margin-right: 10px;
-            width: 50px;
+            width: 40px;
             height: 50px;
             padding: 0;
-            border-radius: 100%;
             background-color: transparent;
-            border: 1px solid #009ee3;
+            border: 1px solid var(--borderButton);
             font-size: 20px;
+            border-radius: 0;
+        }
+
+        .buttonCoffeesContainer {
+            position: absolute;
+            right: 16px;
+
+            button {
+                &:first-child {
+                    border-right: 0;
+                    border-radius: 5px 0 0 5px;
+                }
+
+                &:last-child {
+                    border-left: 0;
+                    border-radius: 0 5px 5px 0;
+                }
+            }
+        }
+
+        .countCoffeesContainer {
+            display: flex;
+
+            button {
+                width: 35px;
+                margin: 0;
+                border-radius: 0;
+                background-color: var(--buttonBackground);
+                border: 0;
+
+                &:first-child {
+                    border-radius: 5px 0 0 5px;
+                }
+
+                &:last-child {
+                    border-radius: 0 5px 5px 0;
+                }
+            }
         }
     }
 
     input {
         width: 100%;
         border-radius: 4px;
-        background-color: #f5f5f5;
+        background-color: var(--inputBackground);
         border: 0;
         font-size: 16px;
         padding: 16px;
         box-sizing: border-box;
         margin-bottom: 10px;
         margin-top: 10px;
+        color: var(--textBlack);
+
+        &::placeholder {
+            color: var(--textBlack);
+        }
     }
 
     textarea {
-        background-color: #f5f5f5;
+        background-color: var(--inputBackground);
         border-radius: 4px;
         border: 0;
         width: 100%;
@@ -84,14 +131,18 @@
         box-sizing: border-box;
         max-width: 100%;
         min-width: 100%;
+
+        &::placeholder {
+            color: var(--textBlack);
+        }
     }
 
     button {
         padding: 8px 32px;
         font-size: 16px;
         border: 0;
-        background-color: rgba(65, 137, 230, 0.15);
-        color: #009ee3;
+        background-color: var(--buttonBackground);
+        color: var(--buttonText);
         width: 100%;
         border-radius: 4px;
         margin-top: 8px;
@@ -103,5 +154,18 @@
         margin: 0 auto;
         box-sizing: border-box;
         border-radius: 6px;
+
+        .containerInputCoffee {
+            .buttonCoffeesContainer {
+                position: initial;
+                margin-left: 32px;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 320px) {
+        .buttonCoffeesContainer {
+            display: none;
+        }
     }
 }

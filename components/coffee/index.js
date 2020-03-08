@@ -84,8 +84,6 @@ class Coffee extends React.Component {
         const { openTextInput, answer } = this.state;
         const { SHOW_DATE_COFFEE } = process.env;
 
-        console.log(SHOW_DATE_COFFEE);
-
         return (
             <section className={style.coffeeContainer}>
                 <div className={style.coffee}>

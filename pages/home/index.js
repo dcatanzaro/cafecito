@@ -93,7 +93,7 @@ class Home extends React.Component {
 
         return (
             <>
-                <Header />
+                <Header countCoffees={coffees.countCoffees} />
                 <InputText />
 
                 <h3 className={style.titleDescription}>Descripción</h3>
@@ -101,7 +101,7 @@ class Home extends React.Component {
                 <Post />
 
                 <h3 className={style.title}>Cafés</h3>
-                {coffees.map((coffee, key) => (
+                {coffees.coffees.map((coffee, key) => (
                     <Coffee
                         isAdmin={isAdmin}
                         password={password}
@@ -111,7 +111,7 @@ class Home extends React.Component {
                     />
                 ))}
 
-                {!coffees.length && (
+                {!coffees.countCoffees && (
                     <div className={style.waitingCoffee}>
                         <span>En espera ☕️</span>
                     </div>
