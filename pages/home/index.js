@@ -10,8 +10,6 @@ import Modal from "../../components/modal/index";
 
 import style from "./style.scss";
 
-const isDev = process.env.NODE_ENV !== "production";
-
 const fetchCoffees = async query => {
     const arQueries = query || queryConvert();
 
@@ -23,12 +21,12 @@ const fetchCoffees = async query => {
 };
 
 const queryConvert = () => {
-    var queryStr = window.location.search,
+    const queryStr = window.location.search,
         queryArr = queryStr.replace("?", "").split("&"),
         queryParams = [];
 
-    for (var q = 0, qArrLength = queryArr.length; q < qArrLength; q++) {
-        var qArr = queryArr[q].split("=");
+    for (let q = 0, qArrLength = queryArr.length; q < qArrLength; q++) {
+        const qArr = queryArr[q].split("=");
         queryParams[qArr[0]] = qArr[1];
     }
 
@@ -121,21 +119,6 @@ class Home extends React.Component {
                     openModal={openModal}
                     openModalCreateEvent={this.openModalCreateEvent}
                 />
-
-                <script
-                    async
-                    src="https://www.googletagmanager.com/gtag/js?id=UA-28173560-28"
-                ></script>
-
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `window.dataLayer = window.dataLayer || [];
-                                function gtag(){dataLayer.push(arguments);}
-                                gtag('js', new Date());
-
-                                gtag('config', 'UA-28173560-28');`
-                    }}
-                ></script>
             </>
         );
     }

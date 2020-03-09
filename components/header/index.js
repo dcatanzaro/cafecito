@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./style.scss";
 
 import { Follow } from "react-twitter-widgets";

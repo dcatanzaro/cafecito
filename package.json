@@ -5,7 +5,8 @@
     "scripts": {
         "dev": "cross-env NODE_ENV=development nodemon server.js",
         "build": "next build",
-        "start": "cross-env NODE_ENV=production node server.js"
+        "start": "cross-env NODE_ENV=production node server.js",
+        "lint": "eslint './**/*.js'"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.27",
@@ -30,6 +31,8 @@
         "react-twitter-widgets": "^1.7.1"
     },
     "devDependencies": {
-        "cross-env": "^7.0.2"
+        "babel-eslint": "^10.1.0",
+        "cross-env": "^7.0.2",
+        "eslint": "^6.8.0"
     }
 }
