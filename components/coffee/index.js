@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import style from "./style.scss";
 
 import axios from "axios";
@@ -23,7 +23,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
 
         const url = `${process.env.URL}/api/send_answer`;
 
-        const result = await axios.post(url, {
+        await axios.post(url, {
             answer,
             password,
             idCoffee
@@ -33,14 +33,14 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
     };
 
     const deleteMessage = async idCoffee => {
-        const confirmDelete = confirm(
+        const confirmDelete = window.confirm(
             `¿Estás seguro que querés borrar el mensaje?`
         );
 
         if (confirmDelete) {
             const url = `${process.env.URL}/api/delete_coffee`;
 
-            const result = await axios.post(url, {
+            await axios.post(url, {
                 password,
                 idCoffee
             });

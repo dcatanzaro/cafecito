@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import style from "./style.scss";
 
 import axios from "axios";
@@ -26,6 +26,7 @@ const InputText = () => {
 
     const tmpCountCoffees = countCoffees ? countCoffees : 1;
     const priceCoffee = tmpCountCoffees * price;
+
     return (
         <header className={style.inputText}>
             {loading ? (
