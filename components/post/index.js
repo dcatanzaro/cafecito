@@ -9,7 +9,7 @@ const Post = () => (
             </p>
 
             <p>
-                💻 Estoy hace más de 10 años trabajando en el mundo de sistemas,
+                💻 Estoy hace más de 10 años en el mundo de sistemas,
                 principalmente centrado en lo que es web, tanto desarrollo
                 FrontEnd como BackEnd.
             </p>

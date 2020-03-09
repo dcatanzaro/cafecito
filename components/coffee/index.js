@@ -13,7 +13,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
         setAnswer(coffee.answer || "");
     };
 
-    const sendAnswer = async (idCoffee) => {
+    const sendAnswer = async idCoffee => {
         if (!answer.length) {
             return;
         }
@@ -26,26 +26,13 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
         const result = await axios.post(url, {
             answer,
             password,
-            idCoffee,
+            idCoffee
         });
 
         loadNewCoffees();
     };
 
-    const queryConvert = () => {
-        var queryStr = window.location.search,
-            queryArr = queryStr.replace("?", "").split("&"),
-            queryParams = [];
-
-        for (var q = 0, qArrLength = queryArr.length; q < qArrLength; q++) {
-            var qArr = queryArr[q].split("=");
-            queryParams[qArr[0]] = qArr[1];
-        }
-
-        return queryParams;
-    };
-
-    const deleteMessage = async (idCoffee) => {
+    const deleteMessage = async idCoffee => {
         const confirmDelete = confirm(
             `¿Estás seguro que querés borrar el mensaje?`
         );
@@ -55,7 +42,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
 
             const result = await axios.post(url, {
                 password,
-                idCoffee,
+                idCoffee
             });
 
             loadNewCoffees();
@@ -63,6 +50,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
     };
 
     const { SHOW_DATE_COFFEE } = process.env;
+
     return (
         <section className={style.coffeeContainer}>
             <div className={style.coffee}>
@@ -70,7 +58,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
                     <div className={style.name}>
                         {coffee.name ? coffee.name : "Anónimo"}
                         <span>
-                            {`regaló ${coffee.countCoffees} ${
+                            {` regaló ${coffee.countCoffees} ${
                                 coffee.countCoffees > 1 ? "cafés" : "café"
                             }`}{" "}
                             {SHOW_DATE_COFFEE
@@ -105,7 +93,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
                             <textarea
                                 placeholder="Respuesta"
                                 value={answer}
-                                onChange={(e) => {
+                                onChange={e => {
                                     setAnswer(e.target.value);
                                 }}
                             ></textarea>

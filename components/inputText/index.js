@@ -18,7 +18,7 @@ const InputText = () => {
         const result = await axios.post(url, {
             name,
             message,
-            countCoffees: countCoffees || 1,
+            countCoffees: countCoffees || 1
         });
 
         window.location.href = result.data.mercadoPagoLink;
@@ -48,7 +48,7 @@ const InputText = () => {
                             type="text"
                             placeholder="1"
                             value={countCoffees}
-                            onChange={(e) => {
+                            onChange={e => {
                                 setCountCoffees(e.target.value);
                             }}
                         />
@@ -95,7 +95,7 @@ const InputText = () => {
                         type="text"
                         value={name}
                         placeholder="Nombre o @Twitter (opcional)"
-                        onChange={(e) => {
+                        onChange={e => {
                             setName(e.target.value);
                         }}
                     />
@@ -103,7 +103,7 @@ const InputText = () => {
                         maxLength="500"
                         placeholder="Mensaje (opcional)"
                         value={message}
-                        onChange={(e) => {
+                        onChange={e => {
                             setMessage(e.target.value);
                         }}
                     ></textarea>
