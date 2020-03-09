@@ -46,7 +46,10 @@ class Home extends React.Component {
                 `${process.env.URL}/api/get_payment_by_coffe/${coffee.coffeeId}`
             );
 
-            return { coffees, showThankYou: result.data.showThankYou };
+            return {
+                coffees,
+                showThankYou: result.data.showThankYou
+            };
         }
 
         return { coffees, showThankYou: false };
@@ -61,8 +64,25 @@ class Home extends React.Component {
             coffees: coffees || [],
             isAdmin: false,
             password: "",
-            openModal: showThankYou
+            openModal: showThankYou,
+            prefersDark: "light"
         };
+
+        if (process.browser) {
+            const localStorageDarkMode = window.localStorage.getItem(
+                "darkMode"
+            );
+
+            if (localStorageDarkMode) {
+                this.state.prefersDark = localStorageDarkMode;
+            } else {
+                const prefersDark = window.matchMedia(
+                    "(prefers-color-scheme: dark)"
+                ).matches;
+
+                this.state.prefersDark = prefersDark ? "dark" : "light";
+            }
+        }
     }
 
     loadNewCoffees = async () => {
@@ -87,11 +107,20 @@ class Home extends React.Component {
     };
 
     render() {
-        const { coffees, isAdmin, password, openModal } = this.state;
+        const {
+            coffees,
+            isAdmin,
+            password,
+            openModal,
+            prefersDark
+        } = this.state;
 
         return (
             <>
-                <Header countCoffees={coffees.countCoffees} />
+                <Header
+                    countCoffees={coffees.countCoffees}
+                    prefersDark={prefersDark}
+                />
                 <InputText />
 
                 <h3 className={style.titleDescription}>Descripción</h3>

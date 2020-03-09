@@ -49,7 +49,10 @@ const InputText = () => {
                             <button
                                 onClick={() => {
                                     if (countCoffees > 1) {
-                                        setCountCoffees(countCoffees - 1);
+                                        setCountCoffees(
+                                            preCountCoffees =>
+                                                preCountCoffees - 1
+                                        );
                                     }
                                 }}
                             >
@@ -67,7 +70,9 @@ const InputText = () => {
 
                             <button
                                 onClick={() => {
-                                    setCountCoffees(countCoffees + 1);
+                                    setCountCoffees(
+                                        preCountCoffees => preCountCoffees + 1
+                                    );
                                 }}
                             >
                                 +

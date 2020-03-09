@@ -60,12 +60,11 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
                         <span>
                             {` regaló ${coffee.countCoffees} ${
                                 coffee.countCoffees > 1 ? "cafés" : "café"
-                            }`}{" "}
-                            {SHOW_DATE_COFFEE
-                                ? `el ${dayjs(coffee.createdAt).format(
-                                      "DD-MM-YYYY"
-                                  )}`
-                                : ""}
+                            }`}
+                            {SHOW_DATE_COFFEE &&
+                                ` el ${dayjs(coffee.createdAt).format(
+                                    "DD-MM-YYYY"
+                                )}`}
                         </span>
                     </div>
                     {coffee.message && (

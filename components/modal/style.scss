@@ -16,7 +16,7 @@
         header {
             padding: 16px;
             font-size: 18px;
-            background-color: #cadffa;
+            background-color: var(--buttonBackground);
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             position: relative;
             border-radius: 6px 6px 0 0;
@@ -33,6 +33,7 @@
 
         .formContainer {
             padding: 16px;
+            color: var(--textBlack);
 
             img {
                 margin-top: 16px;
