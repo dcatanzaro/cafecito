@@ -18,6 +18,16 @@
 
     .header {
         display: flex;
+        position: relative;
+
+        .darkMode {
+            font-size: 22px;
+            color: #006693;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 16px;
+        }
     }
 
     .profileImg {
