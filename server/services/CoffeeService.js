@@ -69,6 +69,9 @@ class CoffeeService {
                     coffee.countCoffees > 1 ? "cafés" : "café"
                 }`,
                 message: coffee.message,
+                puppeteerArgs: {
+                    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+                },
             },
         });
 
