@@ -37,12 +37,12 @@ const HeadCustom = ({ share }) => (
             />
         )}
 
-        <meta itemprop="name" content="Damián Catanzaro | Cafecito" />
-        <meta itemprop="description" content="" />
+        <meta itemProp="name" content="Damián Catanzaro | Cafecito" />
+        <meta itemProp="description" content="" />
 
         {share && share._id && (
             <meta
-                itemprop="image"
+                itemProp="image"
                 content={`${process.env.URL}/imagesCoffee/${share._id}.png`}
             />
         )}

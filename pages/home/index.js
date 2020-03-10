@@ -108,6 +108,7 @@ class Home extends React.Component {
     static propTypes = {
         coffees: PropTypes.object,
         showThankYou: PropTypes.bool,
+        query: PropTypes.object,
     };
 
     loadNewCoffees = async () => {
