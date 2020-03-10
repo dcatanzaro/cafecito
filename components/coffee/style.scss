@@ -11,6 +11,17 @@
         border-radius: 6px;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
         padding: 16px;
+        position: relative;
+    }
+
+    .shareIcon {
+        font-size: 22px;
+        color: #006693;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 16px;
+        cursor: pointer;
     }
 
     .q {

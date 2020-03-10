@@ -3,29 +3,21 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import style from "./style.scss";
 
-const Modal = ({ openModal, openModalCreateEvent }) => (
+const Modal = ({ title, openModal, openModalCreateEvent, children }) => (
     <div
         className={style.modalAddEventContainer}
         style={{ display: `${openModal ? "block" : "none"}` }}
     >
         <div className={style.modalContainer}>
             <header>
-                ¡Gracias!{" "}
+                {title}
                 <FontAwesomeIcon
                     icon={faTimes}
                     onClick={() => openModalCreateEvent(false)}
                 />
             </header>
 
-            <div className={style.formContainer}>
-                OMG! What!? Gracias por haberme ayudado! Lo valoro muchisimo!
-                ❤️. Happy coding ✨.
-                <img
-                    width="100%"
-                    src="https://media2.giphy.com/media/vFKqnCdLPNOKc/giphy.gif"
-                    alt=""
-                />
-            </div>
+            <div className={style.formContainer}>{children}</div>
         </div>
     </div>
 );

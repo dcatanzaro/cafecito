@@ -8,6 +8,12 @@ import Coffee from "../../components/coffee/index";
 import Post from "../../components/post/index";
 import Modal from "../../components/modal/index";
 
+import dayjs from "dayjs";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+
 import style from "./style.scss";
 
 const fetchCoffees = async query => {
@@ -65,7 +71,9 @@ class Home extends React.Component {
             isAdmin: false,
             password: "",
             openModal: showThankYou,
-            prefersDark: "light"
+            openModalShare: false,
+            prefersDark: "light",
+            share: {}
         };
 
         if (process.browser) {
@@ -106,14 +114,56 @@ class Home extends React.Component {
         });
     };
 
+    shareTwitter = () => {
+        window.open(
+            "https://twitter.com/intent/tweet?text=https://cafecito.damiancatanzaro.com/",
+            "targetWindow",
+            "toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250"
+        );
+        return false;
+    };
+
+    copyLink = () => {
+        const linkToGo = "huehue";
+
+        if (typeof navigator.clipboard == "undefined") {
+            var textArea = document.createElement("textarea");
+            textArea.value = linkToGo;
+            textArea.style.position = "fixed"; //avoid scrolling to bottom
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand("copy");
+            } catch (err) {}
+
+            document.body.removeChild(textArea);
+            return;
+        }
+
+        navigator.clipboard.writeText(linkToGo);
+    };
+
+    setShare = coffee => {
+        this.setState({
+            share: coffee,
+            openModalShare: true
+        });
+    };
+
     render() {
         const {
             coffees,
             isAdmin,
             password,
             openModal,
-            prefersDark
+            openModalShare,
+            prefersDark,
+            share
         } = this.state;
+
+        const { SHOW_DATE_COFFEE } = process.env;
 
         return (
             <>
@@ -130,6 +180,7 @@ class Home extends React.Component {
                 <h3 className={style.title}>Cafés</h3>
                 {coffees.coffees.map((coffee, key) => (
                     <Coffee
+                        setShare={this.setShare}
                         isAdmin={isAdmin}
                         password={password}
                         key={key}
@@ -145,9 +196,66 @@ class Home extends React.Component {
                 )}
 
                 <Modal
+                    title="¡Gracias!"
                     openModal={openModal}
                     openModalCreateEvent={this.openModalCreateEvent}
-                />
+                >
+                    OMG! What!? Gracias por haberme ayudado! Lo valoro
+                    muchisimo! ❤️. Happy coding ✨.
+                    <img
+                        width="100%"
+                        src="https://media2.giphy.com/media/vFKqnCdLPNOKc/giphy.gif"
+                        alt=""
+                    />
+                </Modal>
+
+                <Modal
+                    title="Compartir"
+                    openModal={openModalShare}
+                    openModalCreateEvent={this.openModalCreateEvent}
+                >
+                    <div className={style.q}>
+                        <div className={style.name}>
+                            {share.name ? share.name : "Anónimo"}
+                            <span>
+                                {` regaló ${share.countCoffees} ${
+                                    share.countCoffees > 1 ? "cafés" : "café"
+                                }`}
+                                {SHOW_DATE_COFFEE &&
+                                    ` el ${dayjs(share.createdAt).format(
+                                        "DD-MM-YYYY"
+                                    )}`}
+                            </span>
+                        </div>
+                        {share.message && (
+                            <span className={style.text}>
+                                Me sorprendió como tus side projects (y la
+                                calidad de estos) motivan a uno a ponerle más
+                                pilas para aprender/practicar. Un genio. Saludos
+                                desde Misiones.
+                            </span>
+                        )}
+                    </div>
+                    <div className={style.profile}>
+                        <div className={style.profileImg}></div>
+                        <span>@DamianCatanzaro</span>
+                    </div>
+
+                    <div className={style.buttonShare}>
+                        <button
+                            className={style.buttonTwitter}
+                            onClick={() => this.shareTwitter()}
+                        >
+                            <FontAwesomeIcon icon={faTwitter} /> Twitter
+                        </button>
+                        <button
+                            className={style.buttonCopy}
+                            onClick={() => this.copyLink()}
+                        >
+                            <FontAwesomeIcon icon={faCopy} /> Copiar Link
+                        </button>
+                    </div>
+                </Modal>
             </>
         );
     }

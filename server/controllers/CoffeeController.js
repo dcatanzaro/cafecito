@@ -1,3 +1,23 @@
+const nodeHtmlToImage = require("node-html-to-image");
+
+// nodeHtmlToImage({
+//     output: "./public/imagesCoffee/image.png",
+//     html: `<html>
+//       <head>
+//         <style>
+//           body {
+//             width: 200px;
+//             height: 200px;
+//             color: red;
+//           }
+//         <style>
+//         </style>
+//       </head>
+//       <body>Hello world!</body>
+//     </html>
+//     `
+// }).then(() => console.log("The image was created successfully!"));
+
 class CoffeeController {
     constructor(telegram, coffeeService, mercadoPagoService) {
         this.telegram = telegram;

@@ -22,6 +22,75 @@
     }
 }
 
+.q {
+    position: relative;
+    padding: 16px;
+    border: 2px solid #009ee3;
+    border-radius: 6px;
+    text-align: center;
+
+    .name {
+        color: #009ee3;
+
+        span {
+            color: var(--textGray);
+        }
+    }
+
+    .text {
+        display: block;
+        margin-top: 8px;
+        color: #333;
+        color: var(--textBlack);
+        white-space: pre-wrap;
+    }
+}
+
+.profile {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .profileImg {
+        width: 30px;
+        height: 30px;
+        background-image: url("/imgs/profile.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 100%;
+    }
+
+    span {
+        margin-left: 8px;
+    }
+}
+
+.buttonShare {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        border: 0;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .buttonTwitter {
+        background-color: #1da1f2;
+        padding: 8px 16px;
+        margin-right: 16px;
+    }
+
+    .buttonCopy {
+        background-color: #5f7fff;
+        padding: 8px 16px;
+    }
+}
+
 @media only screen and (min-width: 768px) {
     .title,
     .titleDescription,

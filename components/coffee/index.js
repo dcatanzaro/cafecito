@@ -4,7 +4,10 @@ import style from "./style.scss";
 import axios from "axios";
 import dayjs from "dayjs";
 
-const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
+
+const Coffee = ({ setShare, coffee, loadNewCoffees, password, isAdmin }) => {
     const [isOpenTextInput, setIsOpenTextInput] = useState(false);
     const [answer, setAnswer] = useState("");
 
@@ -54,6 +57,15 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
     return (
         <section className={style.coffeeContainer}>
             <div className={style.coffee}>
+                <FontAwesomeIcon
+                    icon={faShareAlt}
+                    className={style.shareIcon}
+                    onClick={() => {
+                        console.log(coffee);
+                        setShare(coffee);
+                    }}
+                />
+
                 <div className={style.q}>
                     <div className={style.name}>
                         {coffee.name ? coffee.name : "Anónimo"}
