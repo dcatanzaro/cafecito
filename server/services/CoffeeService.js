@@ -1,7 +1,7 @@
 const Coffee = require("../models/coffee");
 
 class CoffeeService {
-    getCoffee = async (id, data) => {
+    getCoffee = async id => {
         const result = await Coffee.findOne({ _id: id }).lean();
 
         return result;
@@ -33,17 +33,13 @@ class CoffeeService {
         return result;
     };
 
-    deleteCoffee = async (idCoffee, password) => {
-        if (password != process.env.PASSWORD_EDITOR) {
-            return res.json({});
-        }
-
+    deleteCoffee = async idCoffee => {
         const result = await Coffee.updateOne(
             { _id: idCoffee },
             { $set: { deleted: true } }
         );
 
-        return res.json(result);
+        return result;
     };
 
     getCoffees = async () => {
