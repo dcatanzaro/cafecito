@@ -1,3 +1,5 @@
+import React from "react";
+
 import style from "./style.scss";
 
 const Post = () => (
@@ -23,14 +25,22 @@ const Post = () => (
 
             <p>
                 Blog:{" "}
-                <a href="https://damiancatanzaro.com/blog/" target="_blank">
+                <a
+                    href="https://damiancatanzaro.com/blog/"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
                     https://damiancatanzaro.com/blog/
                 </a>
             </p>
 
             <p>
                 Y además estoy en constante aporte en mi Twitter:{" "}
-                <a href="https://twitter.com/DamianCatanzaro" target="_blank">
+                <a
+                    href="https://twitter.com/DamianCatanzaro"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
                     @DamianCatanzaro
                 </a>{" "}
                 dando una mano a quien necesite y creando nuevos proyectos
@@ -42,20 +52,32 @@ const Post = () => (
             </p>
             <p>
                 <strong>Anon Q&A:</strong>{" "}
-                <a href="https://anon.damiancatanzaro.com/" target="_blank">
+                <a
+                    href="https://anon.damiancatanzaro.com/"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
                     https://anon.damiancatanzaro.com/
                 </a>
             </p>
             <p>
                 <strong>Calendar de Sistemas:</strong>{" "}
-                <a href="https://damiancatanzaro.com/calendar" target="_blank">
+                <a
+                    href="https://damiancatanzaro.com/calendar"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
                     https://damiancatanzaro.com/calendar
                 </a>
             </p>
 
             <p>
                 <strong>Y obvio, Cafecito ☕️!:</strong>{" "}
-                <a href="https://cafecito.damiancatanzaro.com" target="_blank">
+                <a
+                    href="https://cafecito.damiancatanzaro.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
                     https://cafecito.damiancatanzaro.com/
                 </a>
             </p>

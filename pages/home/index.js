@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import axios from "axios";
 
 import Header from "../../components/header/index";
@@ -54,7 +54,7 @@ class Home extends React.Component {
 
             return {
                 coffees,
-                showThankYou: result.data.showThankYou
+                showThankYou: result.data.showThankYou,
             };
         }
 
@@ -73,7 +73,7 @@ class Home extends React.Component {
             openModal: showThankYou,
             openModalShare: false,
             prefersDark: "light",
-            share: {}
+            share: {},
         };
 
         if (process.browser) {
@@ -93,6 +93,11 @@ class Home extends React.Component {
         }
     }
 
+    static propTypes = {
+        coffees: PropTypes.array,
+        showThankYou: PropTypes.bool,
+    };
+
     loadNewCoffees = async () => {
         const coffees = await fetchCoffees();
 
@@ -104,13 +109,13 @@ class Home extends React.Component {
 
         this.setState({
             isAdmin: arQueries.isAdmin,
-            password: arQueries.password
+            password: arQueries.password,
         });
     }
 
     openModalCreateEvent = status => {
         this.setState({
-            openModal: status
+            openModal: status,
         });
     };
 
@@ -148,7 +153,7 @@ class Home extends React.Component {
     setShare = coffee => {
         this.setState({
             share: coffee,
-            openModalShare: true
+            openModalShare: true,
         });
     };
 
@@ -160,7 +165,7 @@ class Home extends React.Component {
             openModal,
             openModalShare,
             prefersDark,
-            share
+            share,
         } = this.state;
 
         const { SHOW_DATE_COFFEE } = process.env;
