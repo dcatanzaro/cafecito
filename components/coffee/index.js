@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import dayjs from "dayjs";
 
-const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
+
+const Coffee = ({ setShare, coffee, loadNewCoffees, password, isAdmin }) => {
     const [isOpenTextInput, setIsOpenTextInput] = useState(false);
     const [answer, setAnswer] = useState("");
 
@@ -54,18 +57,27 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
     return (
         <section className={style.coffeeContainer}>
             <div className={style.coffee}>
+                <FontAwesomeIcon
+                    icon={faShareAlt}
+                    className={style.shareIcon}
+                    onClick={() => {
+                        console.log(coffee);
+                        setShare(coffee);
+                    }}
+                    width="20"
+                />
+
                 <div className={style.q}>
                     <div className={style.name}>
                         {coffee.name ? coffee.name : "Anónimo"}
                         <span>
                             {` regaló ${coffee.countCoffees} ${
                                 coffee.countCoffees > 1 ? "cafés" : "café"
-                            }`}{" "}
-                            {SHOW_DATE_COFFEE
-                                ? `el ${dayjs(coffee.createdAt).format(
-                                      "DD-MM-YYYY"
-                                  )}`
-                                : ""}
+                            }`}
+                            {SHOW_DATE_COFFEE &&
+                                ` el ${dayjs(coffee.createdAt).format(
+                                    "DD-MM-YYYY"
+                                )}`}
                         </span>
                     </div>
                     {coffee.message && (
@@ -108,11 +120,12 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
 };
 
 Coffee.propTypes = {
+    setShare: PropTypes.func,
     coffee: PropTypes.shape({
         answer: PropTypes.string,
         name: PropTypes.string,
         countCoffees: PropTypes.number,
-        createdAt: PropTypes.number,
+        createdAt: PropTypes.string,
         message: PropTypes.string,
         _id: PropTypes.string,
     }),
