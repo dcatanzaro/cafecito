@@ -45,51 +45,78 @@ const InputText = () => {
 
                         <span className={style.multiplier}>x</span>
 
-                        <input
-                            type="text"
-                            placeholder="1"
-                            value={countCoffees}
-                            onChange={e => {
-                                setCountCoffees(e.target.value);
-                            }}
-                        />
+                        <div className={style.countCoffeesContainer}>
+                            <button
+                                onClick={() => {
+                                    if (countCoffees > 1) {
+                                        setCountCoffees(
+                                            preCountCoffees =>
+                                                preCountCoffees - 1
+                                        );
+                                    }
+                                }}
+                            >
+                                -
+                            </button>
 
-                        <button
-                            className={`${
-                                parseInt(countCoffees) === 1
-                                    ? style.selected
-                                    : null
-                            }`}
-                            onClick={() => {
-                                setCountCoffees(1);
-                            }}
-                        >
-                            1
-                        </button>
-                        <button
-                            className={`${
-                                parseInt(countCoffees) === 3
-                                    ? style.selected
-                                    : null
-                            }`}
-                            onClick={() => {
-                                setCountCoffees(3);
-                            }}
-                        >
-                            3
-                        </button>
-                        <button
-                            className={`${
-                                parseInt(countCoffees) === 5
-                                    ? style.selected
-                                    : null
-                            }`}
-                            onClick={() => {
-                                setCountCoffees(5);
-                            }}
-                        >
-                            5
-                        </button>
+                            <input
+                                type="text"
+                                placeholder="1"
+                                value={countCoffees}
+                                onChange={e => {
+                                    setCountCoffees(e.target.value);
+                                }}
+                            />
+
+                            <button
+                                onClick={() => {
+                                    setCountCoffees(
+                                        preCountCoffees => preCountCoffees + 1
+                                    );
+                                }}
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <div className={style.buttonCoffeesContainer}>
+                            <button
+                                className={`${
+                                    parseInt(countCoffees) === 1
+                                        ? style.selected
+                                        : null
+                                }`}
+                                onClick={() => {
+                                    setCountCoffees(1);
+                                }}
+                            >
+                                1
+                            </button>
+                            <button
+                                className={`${
+                                    parseInt(countCoffees) === 3
+                                        ? style.selected
+                                        : null
+                                }`}
+                                onClick={() => {
+                                    setCountCoffees(3);
+                                }}
+                            >
+                                3
+                            </button>
+                            <button
+                                className={`${
+                                    parseInt(countCoffees) === 5
+                                        ? style.selected
+                                        : null
+                                }`}
+                                onClick={() => {
+                                    setCountCoffees(5);
+                                }}
+                            >
+                                5
+                            </button>
+                        </div>
                     </div>
 
                     <input

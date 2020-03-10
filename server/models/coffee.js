@@ -9,10 +9,11 @@ const coffeeSchema = new Schema(
         answer: String,
         paymentId: String,
         active: Boolean,
-        deleted: Boolean
+        imageCreated: Boolean,
+        deleted: Boolean,
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 );
 

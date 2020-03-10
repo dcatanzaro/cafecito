@@ -3,6 +3,7 @@
     padding: 0 16px;
     margin: 0;
     font-weight: 500;
+    color: var(--textBlack);
 }
 
 .titleDescription {
@@ -18,6 +19,84 @@
         border-radius: 6px;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
         padding: 16px;
+    }
+}
+
+.q {
+    position: relative;
+    padding: 16px;
+    border: 2px solid #009ee3;
+    border-radius: 6px;
+    text-align: center;
+
+    .name {
+        color: #009ee3;
+
+        span {
+            color: var(--textGray);
+        }
+    }
+
+    .text {
+        display: block;
+        margin-top: 8px;
+        color: #333;
+        color: var(--textBlack);
+        white-space: pre-wrap;
+    }
+}
+
+.profile {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .profileImg {
+        width: 30px;
+        height: 30px;
+        background-image: url("/imgs/profile.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 100%;
+    }
+
+    span {
+        margin-left: 8px;
+    }
+}
+
+.buttonShare {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        border: 0;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 14px;
+
+        svg {
+            width: 14px;
+            margin-right: 6px;
+        }
+    }
+
+    .buttonTwitter {
+        background-color: #1da1f2;
+        padding: 8px 16px;
+        margin-right: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    .buttonCopy {
+        background-color: #5f7fff;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
     }
 }
 

@@ -24,7 +24,7 @@ class CoffeeController {
 
         if (name.length > 500 || message.length > 500) {
             return res.json({
-                err: "Invalid length"
+                err: "Invalid length",
             });
         }
 
@@ -36,7 +36,7 @@ class CoffeeController {
             name,
             message,
             countCoffees,
-            active: false
+            active: false,
         });
 
         const paymentLink = await this.mercadoPagoService.createPayment(
@@ -46,7 +46,7 @@ class CoffeeController {
         );
 
         return res.json({
-            mercadoPagoLink: paymentLink
+            mercadoPagoLink: paymentLink,
         });
     };
 
@@ -63,9 +63,37 @@ class CoffeeController {
     };
 
     getCoffees = async (req, res) => {
-        const coffees = await this.coffeeService.getCoffees();
+        const query = { active: true, deleted: null };
 
-        return res.json(coffees);
+        const coffees = await this.coffeeService.getCoffees(query);
+
+        let countCoffees = 0;
+
+        coffees.map(coffe => {
+            countCoffees += coffe.countCoffees;
+        });
+
+        return res.json({ coffees, countCoffees });
+    };
+
+    getCoffeesWithoutImages = async () => {
+        const query = { active: true, deleted: null, imageCreated: null };
+
+        const coffees = await this.coffeeService.getCoffees(query);
+
+        this.processImage(coffees);
+    };
+
+    processImage = async (coffees, count = 0) => {
+        if (coffees[count]) {
+            await this.coffeeService.createImageShare(coffees[count]);
+
+            count++;
+
+            console.log("Create image", count);
+
+            this.processImage(coffees, count);
+        }
     };
 
     savePayment = async (req, res) => {
@@ -83,9 +111,11 @@ class CoffeeController {
                             reference.coffeeId,
                             {
                                 paymentId: id,
-                                active: true
+                                active: true,
                             }
                         );
+
+                        this.coffeeService.createImageShare(coffee);
 
                         this.telegram.sendTelegramMessage(
                             `Cafecito | ☕️ New Payment | Name: ${coffee.name} | Message: ${coffee.message} | Count: ${coffee.countCoffees}`
@@ -107,7 +137,7 @@ class CoffeeController {
 
         if (coffee && coffee.active) {
             return res.json({
-                showThankYou: true
+                showThankYou: true,
             });
         }
 
