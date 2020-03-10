@@ -5,11 +5,19 @@
         "es6": true
     },
     "parser": "babel-eslint",
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": ["react"],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "rules": {
         "no-undef": 2,
         "no-var": 2,
         "no-const-assign": 2,
         "no-unused-vars": 2,
-        "prefer-const": 2
+        "prefer-const": 2,
+        "no-irregular-whitespace": ["error", { "skipTemplates": true }]
     }
 }

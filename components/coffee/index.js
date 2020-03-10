@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import style from "./style.scss";
-
+import PropTypes from "prop-types";
 import axios from "axios";
 import dayjs from "dayjs";
 
@@ -13,7 +13,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
         setAnswer(coffee.answer || "");
     };
 
-    const sendAnswer = async idCoffee => {
+    const sendAnswer = async (idCoffee) => {
         if (!answer.length) {
             return;
         }
@@ -26,13 +26,13 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
         await axios.post(url, {
             answer,
             password,
-            idCoffee
+            idCoffee,
         });
 
         loadNewCoffees();
     };
 
-    const deleteMessage = async idCoffee => {
+    const deleteMessage = async (idCoffee) => {
         const confirmDelete = window.confirm(
             `¿Estás seguro que querés borrar el mensaje?`
         );
@@ -42,7 +42,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
 
             await axios.post(url, {
                 password,
-                idCoffee
+                idCoffee,
             });
 
             loadNewCoffees();
@@ -93,7 +93,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
                             <textarea
                                 placeholder="Respuesta"
                                 value={answer}
-                                onChange={e => {
+                                onChange={(e) => {
                                     setAnswer(e.target.value);
                                 }}
                             ></textarea>
@@ -105,6 +105,20 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
             </div>
         </section>
     );
+};
+
+Coffee.propTypes = {
+    coffee: PropTypes.shape({
+        answer: PropTypes.string,
+        name: PropTypes.string,
+        countCoffees: PropTypes.number,
+        createdAt: PropTypes.number,
+        message: PropTypes.string,
+        _id: PropTypes.string,
+    }),
+    loadNewCoffees: PropTypes.any,
+    password: PropTypes.any,
+    isAdmin: PropTypes.bool,
 };
 
 export default Coffee;
