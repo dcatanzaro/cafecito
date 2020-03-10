@@ -22,6 +22,7 @@
 * {
     font-family: Proxima Nova, -apple-system, Helvetica Neue, Helvetica, Roboto,
         Arial, sans-serif;
+    box-sizing: border-box;
 }
 
 html,
@@ -30,4 +31,11 @@ body {
     margin: 0;
 
     background: #ededed;
+}
+
+button,
+input,
+a {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }

@@ -1,0 +1,55 @@
+.controlsContainer{
+    padding: 25px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+    input {
+        width: 80px;
+        text-align: center;
+        font-size: 25px;
+        border: 1px solid #009EE3;
+        border-radius: 8px;
+    }
+
+    .leftControl,
+    .rightControl{
+        width: 55px;
+        height: 55px;
+        padding: 0;
+        color: #009EE3;
+        font-weight: 700;
+        font-size: 40px;
+        background-color: #E3EDFB;
+        border: 1px solid #009EE3;
+        border-radius: 50%;
+        transition: all .2s ease;
+
+        img {
+            vertical-align: middle;
+        }
+    }
+
+    .leftControl:active,
+    .rightControl:active{
+        transform: scale(.92);
+    }
+
+    .leftControl{
+        margin-right: 40px;
+
+        img {
+            margin-top: -2px; //<- Esto es horrible, no me peguen
+        }
+    }
+
+    .rightControl{
+        margin-left: 40px;
+
+        img {
+            margin-top: -4px; //<- Esto es horrible, no me peguen
+        }
+    }
+
+}
