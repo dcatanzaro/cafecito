@@ -25,8 +25,10 @@ const Modal = ({ title, openModal, openModalCreateEvent, children }) => (
 );
 
 Modal.propTypes = {
+    title: PropTypes.string,
     openModal: PropTypes.bool,
     openModalCreateEvent: PropTypes.func,
+    children: PropTypes.node.isRequired
 };
 
 export default Modal;

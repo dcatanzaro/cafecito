@@ -119,6 +119,7 @@ const Coffee = ({ setShare, coffee, loadNewCoffees, password, isAdmin }) => {
 };
 
 Coffee.propTypes = {
+    setShare: PropTypes.func,
     coffee: PropTypes.shape({
         answer: PropTypes.string,
         name: PropTypes.string,

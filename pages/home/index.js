@@ -132,16 +132,14 @@ class Home extends React.Component {
         const linkToGo = "huehue";
 
         if (typeof navigator.clipboard == "undefined") {
-            var textArea = document.createElement("textarea");
+            const textArea = document.createElement("textarea");
             textArea.value = linkToGo;
             textArea.style.position = "fixed"; //avoid scrolling to bottom
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
 
-            try {
-                document.execCommand("copy");
-            } catch (err) {}
+            document.execCommand("copy");
 
             document.body.removeChild(textArea);
             return;

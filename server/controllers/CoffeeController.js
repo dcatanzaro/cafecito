@@ -1,4 +1,4 @@
-const nodeHtmlToImage = require("node-html-to-image");
+// const nodeHtmlToImage = require("node-html-to-image");
 
 // nodeHtmlToImage({
 //     output: "./public/imagesCoffee/image.png",
@@ -44,7 +44,7 @@ class CoffeeController {
 
         if (name.length > 500 || message.length > 500) {
             return res.json({
-                err: "Invalid length"
+                err: "Invalid length",
             });
         }
 
@@ -56,7 +56,7 @@ class CoffeeController {
             name,
             message,
             countCoffees,
-            active: false
+            active: false,
         });
 
         const paymentLink = await this.mercadoPagoService.createPayment(
@@ -66,7 +66,7 @@ class CoffeeController {
         );
 
         return res.json({
-            mercadoPagoLink: paymentLink
+            mercadoPagoLink: paymentLink,
         });
     };
 
@@ -109,7 +109,7 @@ class CoffeeController {
                             reference.coffeeId,
                             {
                                 paymentId: id,
-                                active: true
+                                active: true,
                             }
                         );
 
@@ -133,7 +133,7 @@ class CoffeeController {
 
         if (coffee && coffee.active) {
             return res.json({
-                showThankYou: true
+                showThankYou: true,
             });
         }
 
