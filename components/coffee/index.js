@@ -64,6 +64,7 @@ const Coffee = ({ setShare, coffee, loadNewCoffees, password, isAdmin }) => {
                         console.log(coffee);
                         setShare(coffee);
                     }}
+                    width="20"
                 />
 
                 <div className={style.q}>

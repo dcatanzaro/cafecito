@@ -20,6 +20,7 @@ const Modal = ({
             <header>
                 {title}
                 <FontAwesomeIcon
+                    width="15"
                     icon={faTimes}
                     onClick={() => openModalCreateEvent(false, nameModal)}
                 />

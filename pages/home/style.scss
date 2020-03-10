@@ -77,17 +77,26 @@
         border-radius: 6px;
         color: #fff;
         font-size: 14px;
+
+        svg {
+            width: 14px;
+            margin-right: 6px;
+        }
     }
 
     .buttonTwitter {
         background-color: #1da1f2;
         padding: 8px 16px;
         margin-right: 16px;
+        display: flex;
+        align-items: center;
     }
 
     .buttonCopy {
         background-color: #5f7fff;
         padding: 8px 16px;
+        display: flex;
+        align-items: center;
     }
 }
 

@@ -264,13 +264,15 @@ class Home extends React.Component {
                             className={style.buttonTwitter}
                             onClick={() => this.shareTwitter()}
                         >
-                            <FontAwesomeIcon icon={faTwitter} /> Twitter
+                            <FontAwesomeIcon icon={faTwitter} width="14" />{" "}
+                            Twitter
                         </button>
                         <button
                             className={style.buttonCopy}
                             onClick={() => this.copyLink()}
                         >
-                            <FontAwesomeIcon icon={faCopy} /> Copiar Link
+                            <FontAwesomeIcon icon={faCopy} width="14" /> Copiar
+                            Link
                         </button>
                     </div>
                 </Modal>

@@ -37,6 +37,7 @@ const Header = ({ countCoffees, prefersDark }) => {
                     onClick={() => {
                         setDarkMode(darkMode === "dark" ? "light" : "dark");
                     }}
+                    width="22"
                 />
             </div>
 
