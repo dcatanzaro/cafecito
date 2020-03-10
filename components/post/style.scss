@@ -2,11 +2,12 @@
     padding: 16px;
 
     .post {
-        background-color: white;
+        background-color: var(--boxBackground);
         border-radius: 6px;
         box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
         padding: 16px;
         border-left: 4px solid #009ee3;
+        color: var(--textBlack);
 
         p {
             margin: 0;
@@ -18,7 +19,7 @@
             }
 
             a {
-                color: #147cbb;
+                color: var(--textBlue);
                 text-decoration: none;
             }
         }
