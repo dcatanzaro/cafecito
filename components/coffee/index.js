@@ -124,7 +124,7 @@ Coffee.propTypes = {
         answer: PropTypes.string,
         name: PropTypes.string,
         countCoffees: PropTypes.number,
-        createdAt: PropTypes.number,
+        createdAt: PropTypes.string,
         message: PropTypes.string,
         _id: PropTypes.string,
     }),

@@ -1,0 +1,105 @@
+<html lang="en">
+    <head>
+        <style>
+            @font-face {
+                font-family: "Proxima Nova";
+                src: url("/fonts/ProximaNovaThin.otf");
+                font-style: normal;
+                font-weight: 100;
+            }
+
+            @font-face {
+                font-family: "Proxima Nova";
+                src: url("/fonts/ProximaNovaRegular.otf");
+                font-style: normal;
+                font-weight: 400;
+            }
+
+            @font-face {
+                font-family: "Proxima Nova";
+                src: url("/fonts/ProximaNovaBold.otf");
+                font-style: normal;
+                font-weight: 700;
+            }
+
+            * {
+                font-family: Proxima Nova, -apple-system, Helvetica Neue,
+                    Helvetica, Roboto, Arial, sans-serif;
+            }
+
+            body {
+                background-color: #383838;
+                padding: 16px;
+                height: 300px;
+                width: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+                border: 2px solid #009ee3;
+                border-radius: 6px;
+                text-align: center;
+            }
+
+            .name {
+                color: #009ee3;
+            }
+
+            .name span {
+                color: #a9a9a9;
+            }
+
+            .text {
+                text-align: center;
+                display: block;
+                margin-top: 8px;
+                color: #eee;
+            }
+
+            .profile {
+                margin-top: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .profileImg,
+            img {
+                width: 30px;
+                height: 30px;
+                background-image: url("https://cafecito.damiancatanzaro.com/imgs/profile.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 100%;
+            }
+
+            .profile span {
+                margin-left: 8px;
+                color: #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width: 100%">
+            <div class="container">
+                <div class="name">
+                    {{name}}
+                    <span>
+                        {{countCoffees}}
+                    </span>
+                </div>
+                <span class="text">{{message}}</span>
+            </div>
+
+            <div class="profile">
+                <div class="profileImg"></div>
+                <span>@DamianCatanzaro</span>
+            </div>
+        </div>
+    </body>
+</html>

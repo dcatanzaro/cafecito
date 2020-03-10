@@ -28,7 +28,7 @@ mongoose.set("useCreateIndex", true);
 mongoose.connect(urlMongo, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
 });
 
 class Telegram {
@@ -61,6 +61,8 @@ const CoffeeInstance = new CoffeeController(
     CoffeeServiceInstance,
     MercadoPagoServiceInstance
 );
+
+CoffeeInstance.getCoffeesWithoutImages();
 
 const express = require("express");
 

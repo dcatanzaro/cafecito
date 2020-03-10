@@ -5,7 +5,13 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import style from "./style.scss";
 
-const Modal = ({ title, openModal, openModalCreateEvent, children }) => (
+const Modal = ({
+    title,
+    nameModal,
+    openModal,
+    openModalCreateEvent,
+    children,
+}) => (
     <div
         className={style.modalAddEventContainer}
         style={{ display: `${openModal ? "block" : "none"}` }}
@@ -15,7 +21,7 @@ const Modal = ({ title, openModal, openModalCreateEvent, children }) => (
                 {title}
                 <FontAwesomeIcon
                     icon={faTimes}
-                    onClick={() => openModalCreateEvent(false)}
+                    onClick={() => openModalCreateEvent(false, nameModal)}
                 />
             </header>
 
@@ -26,6 +32,7 @@ const Modal = ({ title, openModal, openModalCreateEvent, children }) => (
 
 Modal.propTypes = {
     title: PropTypes.string,
+    nameModal: PropTypes.string,
     openModal: PropTypes.bool,
     openModalCreateEvent: PropTypes.func,
     children: PropTypes.node.isRequired,

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
+import HeadCustom from "../../components/headCustom/index";
 import Header from "../../components/header/index";
 import InputText from "../../components/inputText/index";
 import Coffee from "../../components/coffee/index";
@@ -55,25 +56,36 @@ class Home extends React.Component {
             return {
                 coffees,
                 showThankYou: result.data.showThankYou,
+                query,
             };
         }
 
-        return { coffees, showThankYou: false };
+        return { coffees, showThankYou: false, query };
     }
 
     constructor(props) {
         super(props);
 
-        const { coffees, showThankYou } = this.props;
+        const { coffees, showThankYou, query } = this.props;
+
+        let coffeeShare = "";
+
+        if (query.coffee === "coffee" && query.id) {
+            coffeeShare = coffees.coffees.find(coffee => {
+                if (coffee._id == query.id) {
+                    return coffee;
+                }
+            });
+        }
 
         this.state = {
             coffees: coffees || [],
             isAdmin: false,
             password: "",
             openModal: showThankYou,
-            openModalShare: false,
+            openModalShare: coffeeShare && coffeeShare._id ? true : false,
             prefersDark: "light",
-            share: {},
+            share: coffeeShare || {},
         };
 
         if (process.browser) {
@@ -94,7 +106,7 @@ class Home extends React.Component {
     }
 
     static propTypes = {
-        coffees: PropTypes.array,
+        coffees: PropTypes.object,
         showThankYou: PropTypes.bool,
     };
 
@@ -113,15 +125,18 @@ class Home extends React.Component {
         });
     }
 
-    openModalCreateEvent = status => {
+    openModalCreateEvent = (status, type) => {
         this.setState({
-            openModal: status,
+            [type]: status,
         });
     };
 
     shareTwitter = () => {
+        const { share } = this.state;
+        const linkToGo = `${process.env.URL}/coffee/${share._id}`;
+
         window.open(
-            "https://twitter.com/intent/tweet?text=https://cafecito.damiancatanzaro.com/",
+            `https://twitter.com/intent/tweet?text=${linkToGo}`,
             "targetWindow",
             "toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250"
         );
@@ -129,12 +144,13 @@ class Home extends React.Component {
     };
 
     copyLink = () => {
-        const linkToGo = "huehue";
+        const { share } = this.state;
+        const linkToGo = `${process.env.URL}/coffee/${share._id}`;
 
         if (typeof navigator.clipboard == "undefined") {
             const textArea = document.createElement("textarea");
             textArea.value = linkToGo;
-            textArea.style.position = "fixed"; //avoid scrolling to bottom
+            textArea.style.position = "fixed";
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
@@ -170,6 +186,7 @@ class Home extends React.Component {
 
         return (
             <>
+                <HeadCustom share={share} />
                 <Header
                     countCoffees={coffees.countCoffees}
                     prefersDark={prefersDark}
@@ -201,6 +218,7 @@ class Home extends React.Component {
                 <Modal
                     title="¡Gracias!"
                     openModal={openModal}
+                    nameModal="openModal"
                     openModalCreateEvent={this.openModalCreateEvent}
                 >
                     OMG! What!? Gracias por haberme ayudado! Lo valoro
@@ -215,6 +233,7 @@ class Home extends React.Component {
                 <Modal
                     title="Compartir"
                     openModal={openModalShare}
+                    nameModal="openModalShare"
                     openModalCreateEvent={this.openModalCreateEvent}
                 >
                     <div className={style.q}>
@@ -231,12 +250,7 @@ class Home extends React.Component {
                             </span>
                         </div>
                         {share.message && (
-                            <span className={style.text}>
-                                Me sorprendió como tus side projects (y la
-                                calidad de estos) motivan a uno a ponerle más
-                                pilas para aprender/practicar. Un genio. Saludos
-                                desde Misiones.
-                            </span>
+                            <span className={style.text}>{share.message}</span>
                         )}
                     </div>
                     <div className={style.profile}>

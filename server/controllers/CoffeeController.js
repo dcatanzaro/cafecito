@@ -1,23 +1,3 @@
-// const nodeHtmlToImage = require("node-html-to-image");
-
-// nodeHtmlToImage({
-//     output: "./public/imagesCoffee/image.png",
-//     html: `<html>
-//       <head>
-//         <style>
-//           body {
-//             width: 200px;
-//             height: 200px;
-//             color: red;
-//           }
-//         <style>
-//         </style>
-//       </head>
-//       <body>Hello world!</body>
-//     </html>
-//     `
-// }).then(() => console.log("The image was created successfully!"));
-
 class CoffeeController {
     constructor(telegram, coffeeService, mercadoPagoService) {
         this.telegram = telegram;
@@ -83,7 +63,9 @@ class CoffeeController {
     };
 
     getCoffees = async (req, res) => {
-        const coffees = await this.coffeeService.getCoffees();
+        const query = { active: true, deleted: null };
+
+        const coffees = await this.coffeeService.getCoffees(query);
 
         let countCoffees = 0;
 
@@ -92,6 +74,16 @@ class CoffeeController {
         });
 
         return res.json({ coffees, countCoffees });
+    };
+
+    getCoffeesWithoutImages = async () => {
+        const query = { active: true, deleted: null, imageCreated: null };
+
+        const coffees = await this.coffeeService.getCoffees(query);
+
+        coffees.map(coffee => {
+            this.coffeeService.createImageShare(coffee);
+        });
     };
 
     savePayment = async (req, res) => {
@@ -112,6 +104,8 @@ class CoffeeController {
                                 active: true,
                             }
                         );
+
+                        this.coffeeService.createImageShare(coffee);
 
                         this.telegram.sendTelegramMessage(
                             `Cafecito | ☕️ New Payment | Name: ${coffee.name} | Message: ${coffee.message} | Count: ${coffee.countCoffees}`
