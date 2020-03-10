@@ -1,4 +1,4 @@
-.controlsContainer{
+.controlsContainer {
     padding: 25px 0px;
     display: flex;
     flex-direction: row;
@@ -9,22 +9,22 @@
         width: 80px;
         text-align: center;
         font-size: 25px;
-        border: 1px solid #009EE3;
+        border: 1px solid #009ee3;
         border-radius: 8px;
     }
 
     .leftControl,
-    .rightControl{
+    .rightControl {
         width: 55px;
         height: 55px;
         padding: 0;
-        color: #009EE3;
+        color: #009ee3;
         font-weight: 700;
         font-size: 40px;
-        background-color: #E3EDFB;
-        border: 1px solid #009EE3;
+        background-color: #e3edfb;
+        border: 1px solid #009ee3;
         border-radius: 50%;
-        transition: all .2s ease;
+        transition: all 0.2s ease;
         cursor: pointer;
 
         img {
@@ -33,11 +33,11 @@
     }
 
     .leftControl:active,
-    .rightControl:active{
-        transform: scale(.92);
+    .rightControl:active {
+        transform: scale(0.92);
     }
 
-    .leftControl{
+    .leftControl {
         margin-right: 40px;
 
         img {
@@ -45,12 +45,11 @@
         }
     }
 
-    .rightControl{
+    .rightControl {
         margin-left: 40px;
 
         img {
             margin-top: -4px; //<- Esto es horrible, no me peguen
         }
     }
-
 }

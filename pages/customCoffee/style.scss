@@ -1,11 +1,11 @@
-.main{
+.main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.modalContainer{
+.modalContainer {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -16,7 +16,7 @@
     padding: 30px 30px;
     box-shadow: 0px 3px 10px #00000010;
 
-    .profileImg{
+    .profileImg {
         width: 215px;
         height: 215px;
         position: relative;
@@ -26,7 +26,7 @@
         margin-top: -130px;
         margin-bottom: 10px;
 
-        img{
+        img {
             border-radius: 50%;
             width: 100%;
             background-size: cover;
@@ -58,24 +58,23 @@
         box-shadow: -3px 3px 0 white;
     }
 
-    .title{
-        color: #2D2D2D;
+    .title {
+        color: #2d2d2d;
         font-weight: 700;
         margin: 6px 0px;
     }
 
-    .description{
+    .description {
         color: #717171;
         font-weight: 100;
         margin: 6px 0px;
     }
-
 }
 
 .input {
     width: 100%;
     text-align: center;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     border-radius: 6px;
     border: none;
     padding: 12px 16px;
@@ -86,24 +85,26 @@
 .input::-webkit-input-placeholder {
     text-align: center;
 }
- 
-.input:-moz-placeholder { /* Firefox 18- */
-    text-align: center;  
+
+.input:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
 }
- 
-.input::-moz-placeholder {  /* Firefox 19+ */
-    text-align: center;  
+
+.input::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
 }
- 
-.input:-ms-input-placeholder {  
-    text-align: center; 
+
+.input:-ms-input-placeholder {
+    text-align: center;
 }
 
 .submit {
     width: 100%;
     font-size: 20px;
-    color: #009EE3;
-    background-color: #E3EDFB;
+    color: #009ee3;
+    background-color: #e3edfb;
     border: none;
     border-radius: 6px;
     padding: 12px 32px;
@@ -113,23 +114,23 @@
 }
 
 .submit:active {
-    border: 1px solid #009EE3;
-    background-color: #E3EDFB;
+    border: 1px solid #009ee3;
+    background-color: #e3edfb;
     padding: 11px 32px;
 }
 
-.redirect{
+.redirect {
     position: absolute;
     right: 15px;
     top: 16px;
 
-    img{
+    img {
         width: 20px;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    .modalContainer{
+    .modalContainer {
         border-radius: 0px;
         padding: 30px 15px;
     }
