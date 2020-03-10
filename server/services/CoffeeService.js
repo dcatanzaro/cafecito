@@ -64,7 +64,7 @@ class CoffeeService {
             output: `./public/imagesCoffee/${coffee._id}.png`,
             html: shareHtml,
             content: {
-                name: coffee.name,
+                name: coffee.name ? coffee.name : "Anónimo",
                 countCoffees: `regaló ${coffee.countCoffees} ${
                     coffee.countCoffees > 1 ? "cafés" : "café"
                 }`,
