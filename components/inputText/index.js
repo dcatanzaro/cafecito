@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import style from "./style.scss";
 
 import axios from "axios";
@@ -8,7 +8,7 @@ const InputText = () => {
     const [countCoffees, setCountCoffees] = useState(1);
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
-    const [price, setPrice] = useState(50);
+    const [price] = useState(50);
 
     const sendCoffee = async () => {
         setLoading(true);
@@ -18,7 +18,7 @@ const InputText = () => {
         const result = await axios.post(url, {
             name,
             message,
-            countCoffees: countCoffees || 1
+            countCoffees: countCoffees || 1,
         });
 
         window.location.href = result.data.mercadoPagoLink;

@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import axios from "axios";
 
 import Header from "../../components/header/index";
@@ -61,9 +61,14 @@ class Home extends React.Component {
             coffees: coffees || [],
             isAdmin: false,
             password: "",
-            openModal: showThankYou
+            openModal: showThankYou,
         };
     }
+
+    static propTypes = {
+        coffees: PropTypes.array,
+        showThankYou: PropTypes.bool,
+    };
 
     loadNewCoffees = async () => {
         const coffees = await fetchCoffees();
@@ -76,13 +81,13 @@ class Home extends React.Component {
 
         this.setState({
             isAdmin: arQueries.isAdmin,
-            password: arQueries.password
+            password: arQueries.password,
         });
     }
 
     openModalCreateEvent = status => {
         this.setState({
-            openModal: status
+            openModal: status,
         });
     };
 

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import style from "./style.scss";
-
+import PropTypes from "prop-types";
 import axios from "axios";
 import dayjs from "dayjs";
 
@@ -26,7 +26,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
         await axios.post(url, {
             answer,
             password,
-            idCoffee
+            idCoffee,
         });
 
         loadNewCoffees();
@@ -42,7 +42,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
 
             await axios.post(url, {
                 password,
-                idCoffee
+                idCoffee,
             });
 
             loadNewCoffees();
@@ -105,6 +105,20 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
             </div>
         </section>
     );
+};
+
+Coffee.propTypes = {
+    coffee: PropTypes.shape({
+        answer: PropTypes.string,
+        name: PropTypes.string,
+        countCoffees: PropTypes.number,
+        createdAt: PropTypes.number,
+        message: PropTypes.string,
+        _id: PropTypes.string,
+    }),
+    loadNewCoffees: PropTypes.any,
+    password: PropTypes.any,
+    isAdmin: PropTypes.bool,
 };
 
 export default Coffee;
