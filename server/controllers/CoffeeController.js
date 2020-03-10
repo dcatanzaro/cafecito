@@ -81,9 +81,19 @@ class CoffeeController {
 
         const coffees = await this.coffeeService.getCoffees(query);
 
-        coffees.map(coffee => {
-            this.coffeeService.createImageShare(coffee);
-        });
+        this.processImage(coffees);
+    };
+
+    processImage = async (coffees, count = 0) => {
+        if (coffees[count]) {
+            await this.coffeeService.createImageShare(coffees[count]);
+
+            count++;
+
+            console.log("Create image", count);
+
+            this.processImage(coffees, count);
+        }
     };
 
     savePayment = async (req, res) => {
