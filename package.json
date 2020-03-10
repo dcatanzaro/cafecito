@@ -20,6 +20,7 @@
         "@fortawesome/free-regular-svg-icons": "^5.12.1",
         "@fortawesome/free-solid-svg-icons": "^5.12.1",
         "@fortawesome/react-fontawesome": "^0.1.9",
+        "@zeit/next-css": "^1.0.1",
         "@zeit/next-sass": "^1.0.1",
         "axios": "^0.19.2",
         "body-parser": "^1.19.0",
