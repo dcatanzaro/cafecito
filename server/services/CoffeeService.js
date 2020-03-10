@@ -71,7 +71,12 @@ class CoffeeService {
                 message: coffee.message,
             },
             puppeteerArgs: {
-                args: ["--no-sandbox", "--disable-setuid-sandbox"],
+                args: [
+                    "--no-sandbox",
+                    "--disable-setuid-sandbox",
+                    "--enable-font-antialiasing",
+                    "--font-render-hinting=none",
+                ],
             },
         });
 
