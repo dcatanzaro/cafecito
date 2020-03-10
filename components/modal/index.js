@@ -12,7 +12,7 @@ const Modal = ({ openModal, openModalCreateEvent }) => (
     >
         <div className={style.modalContainer}>
             <header>
-                ¡Gracias!{" "}
+                ¡Gracias!
                 <FontAwesomeIcon
                     icon={faTimes}
                     onClick={() => openModalCreateEvent(false)}

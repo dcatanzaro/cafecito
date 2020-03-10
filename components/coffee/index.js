@@ -13,7 +13,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
         setAnswer(coffee.answer || "");
     };
 
-    const sendAnswer = async (idCoffee) => {
+    const sendAnswer = async idCoffee => {
         if (!answer.length) {
             return;
         }
@@ -32,7 +32,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
         loadNewCoffees();
     };
 
-    const deleteMessage = async (idCoffee) => {
+    const deleteMessage = async idCoffee => {
         const confirmDelete = window.confirm(
             `¿Estás seguro que querés borrar el mensaje?`
         );
@@ -93,7 +93,7 @@ const Coffee = ({ coffee, loadNewCoffees, password, isAdmin }) => {
                             <textarea
                                 placeholder="Respuesta"
                                 value={answer}
-                                onChange={(e) => {
+                                onChange={e => {
                                     setAnswer(e.target.value);
                                 }}
                             ></textarea>

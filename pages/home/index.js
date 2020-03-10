@@ -10,7 +10,7 @@ import Modal from "../../components/modal/index";
 
 import style from "./style.scss";
 
-const fetchCoffees = async (query) => {
+const fetchCoffees = async query => {
     const arQueries = query || queryConvert();
 
     const url = `${process.env.URL}/api/coffees?password=${arQueries.password}`;
@@ -85,7 +85,7 @@ class Home extends React.Component {
         });
     }
 
-    openModalCreateEvent = (status) => {
+    openModalCreateEvent = status => {
         this.setState({
             openModal: status,
         });

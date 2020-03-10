@@ -6,11 +6,12 @@
         "dev": "cross-env NODE_ENV=development nodemon server.js",
         "build": "next build",
         "start": "cross-env NODE_ENV=production node server.js",
-        "lint": "eslint \"./**/*.js\""
+        "lint": "eslint \"./**/*.js\"",
+        "pretty:stage": "pretty-quick --stage"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run lint"
+            "pre-commit": "npm run lint && npm run pretty:stage"
         }
     },
     "dependencies": {
@@ -40,6 +41,8 @@
         "cross-env": "^7.0.2",
         "eslint": "^6.8.0",
         "eslint-plugin-react": "^7.19.0",
-        "husky": "^4.2.3"
+        "husky": "^4.2.3",
+        "prettier": "1.19.1",
+        "pretty-quick": "^2.0.1"
     }
 }
