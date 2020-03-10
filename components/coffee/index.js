@@ -61,7 +61,6 @@ const Coffee = ({ setShare, coffee, loadNewCoffees, password, isAdmin }) => {
                     icon={faShareAlt}
                     className={style.shareIcon}
                     onClick={() => {
-                        console.log(coffee);
                         setShare(coffee);
                     }}
                     width="20"
