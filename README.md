@@ -103,6 +103,7 @@ http://localhost:3000?isAdmin=true&password=nuestra_password
 ```
 
 ## Para crear un link de donacion personalizado
+
 **Hay que pasarle los datos por parametros (con los textos en formato URL-ENCODED)**
 
 ```
