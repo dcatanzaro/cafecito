@@ -32,10 +32,10 @@ class CustomCoffee extends Component {
     static propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
-        message: PropTypes.string
-    }
+        message: PropTypes.string,
+    };
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         const { title, description, message } = props;
@@ -90,8 +90,8 @@ class CustomCoffee extends Component {
 
                     <ProfileImg imgSrc="https://avatars2.githubusercontent.com/u/43894343?s=460&v=4" />
 
-                    <h1 className={styles.title}>{ title }</h1>
-                    <h3 className={styles.description}>{ description }</h3>
+                    <h1 className={styles.title}>{title}</h1>
+                    <h3 className={styles.description}>{description}</h3>
 
                     <CoffePicker
                         countCoffees={countCoffees}

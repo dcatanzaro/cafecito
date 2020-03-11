@@ -109,6 +109,7 @@ http://localhost:3000?isAdmin=true&password=nuestra_password
 ```
 
 ### Posibles parametros:
-* **title**  - Titulo del modal
-* **description:** - Descripcion del modal
-* **message:** - Mensaje que se mostrará en el home de tu cafesito cuando efectuen una donacion
+
+-   **title** - Titulo del modal
+-   **description:** - Descripcion del modal
+-   **message:** - Mensaje que se mostrará en el home de tu cafesito cuando efectuen una donacion
