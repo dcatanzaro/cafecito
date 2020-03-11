@@ -102,7 +102,8 @@ docker-compose up -d --build
 http://localhost:3000?isAdmin=true&password=nuestra_password
 ```
 
-## Para crear un link de donacion con un mensaje personalizado, hay que pasarle los datos por parametros (con los textos en formato URL-ENCODED)
+## Para crear un link de donacion personalizado
+**Hay que pasarle los datos por parametros (con los textos en formato URL-ENCODED)**
 
 ```
 ?title=Gracias+por+escuchar&description=Ayudame+con+un+cafe
