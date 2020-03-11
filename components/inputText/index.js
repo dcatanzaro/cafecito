@@ -39,7 +39,11 @@ const InputText = () => {
 
                     <div className={style.containerInputCoffee}>
                         <div className={style.imageCoffee}>
-                            <img src="/imgs/coffee.png" height="50" alt="" />
+                            <img
+                                src="/static/imgs/coffee.png"
+                                height="50"
+                                alt=""
+                            />
                             <span>$50</span>
                         </div>
 
