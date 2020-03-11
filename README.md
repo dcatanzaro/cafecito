@@ -101,23 +101,3 @@ docker-compose up -d --build
 ```
 http://localhost:3000?isAdmin=true&password=nuestra_password
 ```
-
-## Para crear un link de donacion personalizado
-
-**Hay que pasarle los datos por parametros (con los textos en formato URL-ENCODED)**
-
-```
-?title=Gracias+por+escuchar&description=Ayudame+con+un+cafe
-```
-
-**Quedando de la siguiente manera**
-
-```
-http://localhost:3000/custom-coffee?title=Gracias+por+escuchar&description=Ayudame+con+un+cafe
-```
-
-### Posibles parametros:
-
--   **title** - Titulo del modal
--   **description:** - Descripcion del modal
--   **message:** - Mensaje que se mostrará en el home de tu cafesito cuando efectuen una donacion
