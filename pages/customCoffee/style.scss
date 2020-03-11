@@ -8,20 +8,22 @@
 .modalContainer {
     display: flex;
     position: relative;
+    margin-bottom: -100px;
     flex-direction: column;
     align-items: center;
     width: 700px;
-    background-color: white;
+    background-color: var(--boxBackground);
     border-radius: 6px;
     padding: 30px 30px;
+    box-sizing: border-box;
     box-shadow: 0px 3px 10px #00000010;
 
     .profileImg {
         width: 215px;
         height: 215px;
         position: relative;
-        background-color: white;
-        border: 11px solid white;
+        background-color: var(--boxBackground);
+        border: 11px solid var(--boxBackground);
         border-radius: 50%;
         margin-top: -130px;
         margin-bottom: 10px;
@@ -42,30 +44,30 @@
         height: 10px;
         top: 79px;
         content: "";
-        background-color: #ededed;
+        background-color: var(--background);
         box-sizing: content-box;
     }
 
     .profileImg::before {
         left: -18px;
         border-bottom-right-radius: 12px;
-        box-shadow: 3px 3px 0 white;
+        box-shadow: 3px 3px 0 var(--boxBackground);
     }
 
     .profileImg::after {
         right: -18px;
         border-bottom-left-radius: 12px;
-        box-shadow: -3px 3px 0 white;
+        box-shadow: -3px 3px 0 var(--boxBackground);
     }
 
     .title {
-        color: #2d2d2d;
+        color: var(--textBlack);
         font-weight: 700;
         margin: 6px 0px;
     }
 
     .description {
-        color: #717171;
+        color: var(--textGray);
         font-weight: 100;
         margin: 6px 0px;
     }
@@ -74,7 +76,8 @@
 .input {
     width: 100%;
     text-align: center;
-    background-color: #f5f5f5;
+    color: var(--textBlack);
+    background-color: var(--inputBackground);
     border-radius: 6px;
     border: none;
     padding: 12px 0px;
@@ -103,8 +106,8 @@
 .submit {
     width: 100%;
     font-size: 20px;
-    color: #009ee3;
-    background-color: #e3edfb;
+    color: var(--buttonText);
+    background-color: var(--buttonBackground);
     border: none;
     border-radius: 6px;
     padding: 12px 32px;
@@ -114,8 +117,7 @@
 }
 
 .submit:active {
-    border: 1px solid #009ee3;
-    background-color: #e3edfb;
+    border: 1px solid var(--borderButton);
     padding: 11px 32px;
 }
 
@@ -129,8 +131,15 @@
     }
 }
 
+svg {
+    g{
+        stroke: var(--buttonBackground);
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .modalContainer {
+        width: 100%;
         border-radius: 0px;
         padding: 30px 15px;
     }
