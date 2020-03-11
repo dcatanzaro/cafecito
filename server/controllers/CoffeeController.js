@@ -90,8 +90,6 @@ class CoffeeController {
 
             count++;
 
-            console.log("Create image", count);
-
             this.processImage(coffees, count);
         }
     };
