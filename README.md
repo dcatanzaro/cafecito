@@ -110,6 +110,12 @@ http://localhost:3000?isAdmin=true&password=nuestra_password
 ?title=Gracias+por+escuchar&description=Ayudame+con+un+cafe
 ```
 
+**Quedando de la siguiente manera**
+
+```
+http://localhost:3000/custom-coffee?title=Gracias+por+escuchar&description=Ayudame+con+un+cafe
+```
+
 ### Posibles parametros:
 
 -   **title** - Titulo del modal
