@@ -8,7 +8,6 @@ import styles from "./style.scss";
 
 const COFFEE_PRICE = 50;
 
-/* Mini components */
 const ProfileImg = ({ imgSrc }) => (
     <div className={styles.profileImg}>
         <img src={imgSrc} alt="profile-img" />
@@ -22,12 +21,34 @@ const RedirectIcon = ({ url }) => (
 );
 
 class CustomCoffee extends Component {
-    state = {
-        message: "",
-        name: "",
-        countCoffees: 1,
-        loading: true,
-    };
+    static async getInitialProps({ query }) {
+        const title = query.title || "";
+        const description = query.description || "";
+        const message = query.message || "";
+
+        return { title, description, message };
+    }
+
+    static propTypes = {
+        title: PropTypes.string,
+        description: PropTypes.string,
+        message: PropTypes.string
+    }
+
+    constructor(props){
+        super(props);
+
+        const { title, description, message } = props;
+
+        this.state = {
+            title,
+            description,
+            message,
+            name: "",
+            countCoffees: 1,
+            loading: true,
+        };
+    }
 
     sendCoffee = async () => {
         const { name, message, countCoffees } = this.state;
@@ -60,7 +81,7 @@ class CustomCoffee extends Component {
     };
 
     render() {
-        const { countCoffees, name } = this.state;
+        const { countCoffees, name, title, description } = this.state;
 
         return (
             <div className={styles.main}>
@@ -69,10 +90,8 @@ class CustomCoffee extends Component {
 
                     <ProfileImg imgSrc="https://avatars2.githubusercontent.com/u/43894343?s=460&v=4" />
 
-                    <h1 className={styles.title}>Gracias por escuchar</h1>
-                    <h3 className={styles.description}>
-                        Ayudame con un cafe ☕️!
-                    </h3>
+                    <h1 className={styles.title}>{ title }</h1>
+                    <h3 className={styles.description}>{ description }</h3>
 
                     <CoffePicker
                         countCoffees={countCoffees}
