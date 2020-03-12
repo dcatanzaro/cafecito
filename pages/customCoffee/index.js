@@ -86,28 +86,30 @@ class CustomCoffee extends Component {
         return (
             <div className={styles.main}>
                 <div className={styles.modalContainer}>
-                    <RedirectIcon url="/" />
-
                     <ProfileImg imgSrc="https://avatars2.githubusercontent.com/u/3155693?s=460&v=4" />
+                    
+                    <div className={styles.contentContainer}>
+                        <RedirectIcon url="/" />
 
-                    <h1 className={styles.title}>{title}</h1>
-                    <h3 className={styles.description}>{description}</h3>
+                        <h1 className={styles.title}>{title}</h1>
+                        <h3 className={styles.description}>{description}</h3>
 
-                    <CoffePicker
-                        countCoffees={countCoffees}
-                        setCount={this.setCount}
-                    />
+                        <CoffePicker
+                            countCoffees={countCoffees}
+                            setCount={this.setCount}
+                        />
 
-                    <input
-                        className={styles.input}
-                        placeholder="Nombre o @Twitter (opcional)"
-                        value={name}
-                        onChange={this.handleFormChange}
-                        type="text"
-                    />
-                    <button className={styles.submit} onClick={this.sendCoffee}>
-                        Invitame 1 café (${countCoffees * COFFEE_PRICE})
-                    </button>
+                        <input
+                            className={styles.input}
+                            placeholder="Nombre o @Twitter (opcional)"
+                            value={name}
+                            onChange={this.handleFormChange}
+                            type="text"
+                        />
+                        <button className={styles.submit} onClick={this.sendCoffee}>
+                            Invitame { countCoffees } { countCoffees > 1 ? 'cafés' : 'café' } (${countCoffees * COFFEE_PRICE})
+                        </button>
+                    </div>
                 </div>
             </div>
         );

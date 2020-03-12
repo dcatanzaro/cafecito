@@ -9,7 +9,9 @@
         width: 80px;
         text-align: center;
         font-size: 25px;
-        border: 1px solid #009ee3;
+        color: var(--textBlack);
+        background-color: var(--inputBackground);
+        border: 1px solid var(--borderButton);
         border-radius: 8px;
     }
 
@@ -18,11 +20,12 @@
         width: 55px;
         height: 55px;
         padding: 0;
-        color: #009ee3;
-        font-weight: 700;
+        color: var(--buttonText);
+        font-weight: 400;
         font-size: 40px;
-        background-color: #e3edfb;
-        border: 1px solid #009ee3;
+        text-align: center;
+        background-color: var(--buttonBackground);
+        border: 1px solid var(--borderButton);
         border-radius: 50%;
         transition: all 0.2s ease;
         cursor: pointer;
