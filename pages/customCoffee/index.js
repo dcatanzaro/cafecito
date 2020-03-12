@@ -53,18 +53,18 @@ class CustomCoffee extends Component {
             const localStorageDarkMode = window.localStorage.getItem(
                 "darkMode"
             );
-            
+
             if (localStorageDarkMode) {
                 document.body.dataset.theme = localStorageDarkMode;
             } else {
                 const prefersDark = window.matchMedia(
                     "(prefers-color-scheme: dark)"
                 ).matches;
-                
+
                 const theme = prefersDark ? "dark" : "light";
 
                 window.localStorage.setItem("darkMode", theme);
-                document.body.dataset.theme = theme
+                document.body.dataset.theme = theme;
             }
         }
     }
