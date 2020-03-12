@@ -87,7 +87,7 @@ class CustomCoffee extends Component {
             <div className={styles.main}>
                 <div className={styles.modalContainer}>
                     <ProfileImg imgSrc="https://avatars2.githubusercontent.com/u/3155693?s=460&v=4" />
-                    
+
                     <div className={styles.contentContainer}>
                         <RedirectIcon url="/" />
 
@@ -106,8 +106,13 @@ class CustomCoffee extends Component {
                             onChange={this.handleFormChange}
                             type="text"
                         />
-                        <button className={styles.submit} onClick={this.sendCoffee}>
-                            Invitame { countCoffees } { countCoffees > 1 ? 'cafés' : 'café' } (${countCoffees * COFFEE_PRICE})
+                        <button
+                            className={styles.submit}
+                            onClick={this.sendCoffee}
+                        >
+                            Invitame {countCoffees}{" "}
+                            {countCoffees > 1 ? "cafés" : "café"} ($
+                            {countCoffees * COFFEE_PRICE})
                         </button>
                     </div>
                 </div>
