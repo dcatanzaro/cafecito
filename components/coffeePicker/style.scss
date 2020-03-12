@@ -1,0 +1,58 @@
+.controlsContainer {
+    padding: 25px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+    input {
+        width: 80px;
+        text-align: center;
+        font-size: 25px;
+        color: var(--textBlack);
+        background-color: var(--inputBackground);
+        border: 1px solid var(--borderButton);
+        border-radius: 8px;
+    }
+
+    .leftControl,
+    .rightControl {
+        width: 55px;
+        height: 55px;
+        padding: 0;
+        color: var(--buttonText);
+        font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+        background-color: var(--buttonBackground);
+        border: 1px solid var(--borderButton);
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        img {
+            vertical-align: middle;
+        }
+    }
+
+    .leftControl:active,
+    .rightControl:active {
+        transform: scale(0.92);
+    }
+
+    .leftControl {
+        margin-right: 40px;
+
+        img {
+            margin-top: -2px; //<- Esto es horrible, no me peguen
+        }
+    }
+
+    .rightControl {
+        margin-left: 40px;
+
+        img {
+            margin-top: -4px; //<- Esto es horrible, no me peguen
+        }
+    }
+}
