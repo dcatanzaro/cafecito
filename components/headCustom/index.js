@@ -18,7 +18,7 @@ const HeadCustom = ({ share }) => (
         {share && share._id && (
             <meta
                 property="og:image"
-                content={`${process.env.URL}/imagesCoffee/${share._id}.png`}
+                content={`${process.env.URL}/static/imagesCoffee/${share._id}.png`}
             />
         )}
 
@@ -33,7 +33,7 @@ const HeadCustom = ({ share }) => (
         {share && share._id && (
             <meta
                 name="twitter:image"
-                content={`${process.env.URL}/imagesCoffee/${share._id}.png`}
+                content={`${process.env.URL}/static/imagesCoffee/${share._id}.png`}
             />
         )}
 
@@ -43,7 +43,7 @@ const HeadCustom = ({ share }) => (
         {share && share._id && (
             <meta
                 itemProp="image"
-                content={`${process.env.URL}/imagesCoffee/${share._id}.png`}
+                content={`${process.env.URL}/static/imagesCoffee/${share._id}.png`}
             />
         )}
     </Head>

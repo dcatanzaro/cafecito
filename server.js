@@ -69,6 +69,8 @@ const express = require("express");
 app.prepare().then(() => {
     const server = express();
 
+    server.use("/static", express.static("public"));
+
     server.use(compression());
 
     server.use(bodyParser.urlencoded({ extended: false }));
