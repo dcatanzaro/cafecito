@@ -55,11 +55,18 @@ const MercadoPagoServiceInstance = new MercadoPagoService();
 const CoffeeService = require("./server/services/CoffeeService");
 const CoffeeServiceInstance = new CoffeeService();
 
+const MercadoPagoController = require("./server/controllers/MercadoPagoController");
+const MercadoPagoInstance = new MercadoPagoController(
+    MercadoPagoServiceInstance
+);
+
+MercadoPagoInstance.createStore();
+
 const CoffeeController = require("./server/controllers/CoffeeController");
 const CoffeeInstance = new CoffeeController(
     telegram,
     CoffeeServiceInstance,
-    MercadoPagoServiceInstance
+    MercadoPagoInstance
 );
 
 CoffeeInstance.getCoffeesWithoutImages();
@@ -86,7 +93,7 @@ app.prepare().then(() => {
         CoffeeInstance.getPaymentByCoffeId
     );
 
-    server.post("/api/ipn", CoffeeInstance.savePayment);
+    server.post("/api/ipn", MercadoPagoInstance.savePayment);
 
     server.use(handler);
 

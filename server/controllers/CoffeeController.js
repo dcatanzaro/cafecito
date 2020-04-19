@@ -1,8 +1,10 @@
+const _ = require("lodash");
+
 class CoffeeController {
-    constructor(telegram, coffeeService, mercadoPagoService) {
+    constructor(telegram, coffeeService, mercadoPagoController) {
         this.telegram = telegram;
         this.coffeeService = coffeeService;
-        this.mercadoPagoService = mercadoPagoService;
+        this.mercadoPagoController = mercadoPagoController;
 
         this.coffeePrice = 50;
     }
@@ -20,7 +22,7 @@ class CoffeeController {
     };
 
     sendCoffee = async (req, res) => {
-        const { name, message, countCoffees } = req.body;
+        const { name, message, countCoffees, QR } = req.body;
 
         if (name.length > 500 || message.length > 500) {
             return res.json({
@@ -39,15 +41,25 @@ class CoffeeController {
             active: false,
         });
 
-        const paymentLink = await this.mercadoPagoService.createPayment(
+        const body = {};
+
+        body.mercadoPagoLink = await this.mercadoPagoController.createPayment(
             "Cafecito | Damián Catanzaro",
             this.coffeePrice * countCoffees,
             result._id
         );
 
-        return res.json({
-            mercadoPagoLink: paymentLink,
-        });
+        if (QR) {
+            const qrImage = await this.mercadoPagoController.createQR(
+                "Cafecito | Damián Catanzaro",
+                this.coffeePrice * countCoffees,
+                result._id
+            );
+
+            body.qr = _.get(qrImage, "pos.qr.image");
+        }
+
+        return res.json(body);
     };
 
     deleteCoffee = async (req, res) => {
@@ -69,7 +81,7 @@ class CoffeeController {
 
         let countCoffees = 0;
 
-        coffees.map(coffe => {
+        coffees.map((coffe) => {
             countCoffees += coffe.countCoffees;
         });
 
@@ -91,40 +103,6 @@ class CoffeeController {
             count++;
 
             this.processImage(coffees, count);
-        }
-    };
-
-    savePayment = async (req, res) => {
-        const { id, topic } = req.query;
-
-        try {
-            if (topic == "payment") {
-                const payment = await this.mercadoPagoService.getPayment(id);
-
-                if (payment.status === "approved") {
-                    const reference = JSON.parse(payment.external_reference);
-
-                    if (reference.coffeeId) {
-                        const coffee = await this.coffeeService.updateCoffee(
-                            reference.coffeeId,
-                            {
-                                paymentId: id,
-                                active: true,
-                            }
-                        );
-
-                        this.coffeeService.createImageShare(coffee);
-
-                        this.telegram.sendTelegramMessage(
-                            `Cafecito | ☕️ New Payment | Name: ${coffee.name} | Message: ${coffee.message} | Count: ${coffee.countCoffees}`
-                        );
-                    }
-                }
-            }
-
-            return res.json({});
-        } catch (e) {
-            return res.json({});
         }
     };
 
