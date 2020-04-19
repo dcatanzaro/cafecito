@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import style from "./style.scss";
 
 import QR from "../QR/index";
@@ -174,6 +176,10 @@ const InputText = ({ isMobile }) => {
             )}
         </header>
     );
+};
+
+InputText.propTypes = {
+    isMobile: PropTypes.string,
 };
 
 export default InputText;

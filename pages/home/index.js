@@ -113,6 +113,7 @@ class Home extends React.Component {
         coffees: PropTypes.object,
         showThankYou: PropTypes.bool,
         query: PropTypes.object,
+        userAgent: PropTypes.string,
     };
 
     loadNewCoffees = async () => {

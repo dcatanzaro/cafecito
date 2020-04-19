@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+
 import style from "./style.scss";
 
 const QR = ({ data }) => {
@@ -17,6 +19,10 @@ const QR = ({ data }) => {
             <a href={data.mercadoPagoLink}>Ir a MercadoPago.com</a>
         </section>
     );
+};
+
+QR.propTypes = {
+    data: PropTypes.object,
 };
 
 export default QR;
