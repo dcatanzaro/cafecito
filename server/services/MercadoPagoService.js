@@ -92,36 +92,42 @@ class MercadoPagoService {
         return result.data;
     };
 
-    assingAmountToPos = async (userId, externalId, title, price) => {
-        const result = await axios.post(
-            `https://api.mercadopago.com/mpmobile/instore/qr/${userId}/${externalId}?access_token=${process.env.ACCESS_KEY_MP}`,
-            JSON.stringify({
-                items: [
-                    {
-                        title: title,
-                        currency_id: "ARS",
-                        unit_price: price,
-                        quantity: 1,
+    assingAmountToPos = async (userId, externalId, coffeeId, title, price) => {
+        try {
+            const result = await axios.post(
+                `https://api.mercadopago.com/mpmobile/instore/qr/${userId}/${externalId}?access_token=${process.env.ACCESS_KEY_MP}`,
+                JSON.stringify({
+                    items: [
+                        {
+                            title: title,
+                            currency_id: "ARS",
+                            unit_price: price,
+                            quantity: 1,
+                        },
+                    ],
+                    external_reference: {
+                        coffeeId,
+                        QR: true,
                     },
-                ],
-                external_reference: {
-                    coffeeId,
-                    QR: true,
-                },
-                payment_methods: {
-                    installments: 1,
-                    default_installments: 1,
-                },
-            }),
-            {
-                headers: {
-                    "Accept-Encoding": "gzip,deflate",
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+                    payment_methods: {
+                        installments: 1,
+                        default_installments: 1,
+                    },
+                }),
+                {
+                    headers: {
+                        "Accept-Encoding": "gzip,deflate",
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
-        return result.data;
+            return result.data;
+        } catch (e) {
+            console.log(e.message);
+
+            return {};
+        }
     };
 }
 

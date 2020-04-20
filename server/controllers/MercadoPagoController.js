@@ -43,6 +43,7 @@ class MercadoPagoController {
         const QR = await this.mercadoPagoService.assingAmountToPos(
             this.userId,
             externalId,
+            coffeeId,
             name,
             price
         );
