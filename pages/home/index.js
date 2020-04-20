@@ -10,6 +10,7 @@ import Post from "../../components/post/index";
 import Modal from "../../components/modal/index";
 
 import dayjs from "dayjs";
+import MobileDetect from "mobile-detect";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -17,7 +18,7 @@ import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
 import style from "./style.scss";
 
-const fetchCoffees = async query => {
+const fetchCoffees = async (query) => {
     const arQueries = query || queryConvert();
 
     const url = `${process.env.URL}/api/coffees?password=${arQueries.password}`;
@@ -41,7 +42,9 @@ const queryConvert = () => {
 };
 
 class Home extends React.Component {
-    static async getInitialProps({ query }) {
+    static async getInitialProps({ req, query }) {
+        const userAgent = req ? req.headers["user-agent"] : navigator.userAgent;
+
         const externalReference = query.external_reference;
 
         const coffees = await fetchCoffees(query);
@@ -57,10 +60,11 @@ class Home extends React.Component {
                 coffees,
                 showThankYou: result.data.showThankYou,
                 query,
+                userAgent,
             };
         }
 
-        return { coffees, showThankYou: false, query };
+        return { coffees, showThankYou: false, query, userAgent };
     }
 
     constructor(props) {
@@ -71,7 +75,7 @@ class Home extends React.Component {
         let coffeeShare = "";
 
         if (query.coffee === "coffee" && query.id) {
-            coffeeShare = coffees.coffees.find(coffee => {
+            coffeeShare = coffees.coffees.find((coffee) => {
                 if (coffee._id == query.id) {
                     return coffee;
                 }
@@ -109,6 +113,7 @@ class Home extends React.Component {
         coffees: PropTypes.object,
         showThankYou: PropTypes.bool,
         query: PropTypes.object,
+        userAgent: PropTypes.string,
     };
 
     loadNewCoffees = async () => {
@@ -165,7 +170,7 @@ class Home extends React.Component {
         navigator.clipboard.writeText(linkToGo);
     };
 
-    setShare = coffee => {
+    setShare = (coffee) => {
         this.setState({
             share: coffee,
             openModalShare: true,
@@ -183,7 +188,11 @@ class Home extends React.Component {
             share,
         } = this.state;
 
+        const { userAgent } = this.props;
+
         const { SHOW_DATE_COFFEE } = process.env;
+
+        const md = new MobileDetect(userAgent);
 
         return (
             <>
@@ -192,7 +201,7 @@ class Home extends React.Component {
                     countCoffees={coffees.countCoffees}
                     prefersDark={prefersDark}
                 />
-                <InputText />
+                <InputText isMobile={md.mobile()} />
 
                 <h3 className={style.titleDescription}>Descripción</h3>
 

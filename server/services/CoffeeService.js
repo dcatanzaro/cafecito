@@ -3,7 +3,7 @@ const nodeHtmlToImage = require("node-html-to-image");
 const fs = require("fs");
 
 class CoffeeService {
-    getCoffee = async id => {
+    getCoffee = async (id) => {
         const result = await Coffee.findOne({ _id: id }).lean();
 
         return result;
@@ -18,7 +18,7 @@ class CoffeeService {
         return result;
     };
 
-    saveCoffee = async data => {
+    saveCoffee = async (data) => {
         const coffee = new Coffee(data);
 
         const result = await coffee.save();
@@ -35,7 +35,7 @@ class CoffeeService {
         return result;
     };
 
-    deleteCoffee = async idCoffee => {
+    deleteCoffee = async (idCoffee) => {
         const result = await Coffee.updateOne(
             { _id: idCoffee },
             { $set: { deleted: true } }
@@ -44,7 +44,7 @@ class CoffeeService {
         return result;
     };
 
-    getCoffees = async query => {
+    getCoffees = async (query) => {
         const coffees = await Coffee.find(query).sort({
             createdAt: -1,
         });
@@ -52,7 +52,7 @@ class CoffeeService {
         return coffees;
     };
 
-    createImageShare = async coffee => {
+    createImageShare = async (coffee) => {
         const shareHtml = await new Promise((resolve, reject) => {
             fs.readFile(`./server/config/share.html`, "utf8", (err, data) => {
                 if (err) reject(err);

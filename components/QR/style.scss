@@ -1,0 +1,35 @@
+.qrSection {
+    text-align: center;
+
+    .qrTitle {
+        color: var(--textBlack);
+        font-size: 24px;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            margin-right: 10px;
+        }
+    }
+
+    .imageQR {
+        max-width: 300px;
+    }
+
+    a {
+        box-sizing: border-box;
+        display: block;
+        text-decoration: none;
+        padding: 8px 32px;
+        font-size: 16px;
+        border: 0;
+        background-color: var(--buttonBackground);
+        color: var(--buttonText);
+        width: 100%;
+        border-radius: 4px;
+        margin-top: 16px;
+        cursor: pointer;
+    }
+}

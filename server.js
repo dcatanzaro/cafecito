@@ -4,11 +4,16 @@ const isDev = process.env.NODE_ENV !== "production";
 const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
 dotenv.config({ path: envFile });
 
+const express = require("express");
+const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
+
 const next = require("next");
 const routes = require("./routes");
 
-const app = next({ dev: isDev });
-const handler = routes.getRequestHandler(app);
+const nextApp = next({ dev: isDev });
+const handler = routes.getRequestHandler(nextApp);
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const compression = require("compression");
@@ -49,48 +54,63 @@ class Telegram {
 
 const telegram = new Telegram();
 
+const SocketService = require("./server/services/SocketService");
+const SocketServiceInstance = new SocketService(io);
+
+SocketServiceInstance.initialize();
+
 const MercadoPagoService = require("./server/services/MercadoPagoService");
 const MercadoPagoServiceInstance = new MercadoPagoService();
 
 const CoffeeService = require("./server/services/CoffeeService");
 const CoffeeServiceInstance = new CoffeeService();
 
+const MercadoPagoController = require("./server/controllers/MercadoPagoController");
+const MercadoPagoInstance = new MercadoPagoController(
+    CoffeeServiceInstance,
+    MercadoPagoServiceInstance,
+    SocketServiceInstance
+);
+
+MercadoPagoInstance.createStore();
+
 const CoffeeController = require("./server/controllers/CoffeeController");
 const CoffeeInstance = new CoffeeController(
     telegram,
     CoffeeServiceInstance,
-    MercadoPagoServiceInstance
+    MercadoPagoInstance
 );
 
 CoffeeInstance.getCoffeesWithoutImages();
 
-const express = require("express");
+nextApp.prepare().then(() => {
+    app.use("/static", express.static("public"));
 
-app.prepare().then(() => {
-    const server = express();
+    app.use(compression());
 
-    server.use("/static", express.static("public"));
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
 
-    server.use(compression());
+    app.post("/api/send_coffee", CoffeeInstance.sendCoffee);
+    app.post("/api/send_answer", CoffeeInstance.sendAnswer);
+    app.post("/api/delete_coffee", CoffeeInstance.deleteCoffee);
+    app.get("/api/coffees", CoffeeInstance.getCoffees);
 
-    server.use(bodyParser.urlencoded({ extended: false }));
-    server.use(bodyParser.json());
-
-    server.post("/api/send_coffee", CoffeeInstance.sendCoffee);
-    server.post("/api/send_answer", CoffeeInstance.sendAnswer);
-    server.post("/api/delete_coffee", CoffeeInstance.deleteCoffee);
-    server.get("/api/coffees", CoffeeInstance.getCoffees);
-
-    server.get(
+    app.get(
         "/api/get_payment_by_coffe/:id",
         CoffeeInstance.getPaymentByCoffeId
     );
 
-    server.post("/api/ipn", CoffeeInstance.savePayment);
+    app.post("/api/ipn", MercadoPagoInstance.savePayment);
 
-    server.use(handler);
+    app.get("*", (req, res) => {
+        return handler(req, res);
+    });
 
-    server.listen(process.env.PORT);
+    server.listen(process.env.PORT, (err) => {
+        if (err) throw err;
+        console.log(`> Ready on http://localhost:${process.env.PORT}`);
+    });
 
     console.log(
         `Server started on port ${process.env.PORT} | Url: ${process.env.URL}`
