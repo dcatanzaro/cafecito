@@ -140,8 +140,6 @@ class MercadoPagoService {
 
             return result.data;
         } catch (e) {
-            console.log(e);
-
             return {};
         }
     };

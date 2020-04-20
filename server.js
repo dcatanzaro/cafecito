@@ -41,8 +41,6 @@ class Telegram {
         const botId = process.env.TELEGRAM_BOTID;
         const chatId = process.env.TELEGRAM_CHATID;
 
-        console.log(botId, chatId, message);
-
         if (!botId || !chatId) {
             return;
         }
