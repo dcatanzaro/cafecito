@@ -100,6 +100,10 @@ class MercadoPagoController {
 
                         this.coffeeService.createImageShare(coffee);
 
+                        this.telegram.sendTelegramMessage(
+                            `Cafecito | ☕️ New Payment | Name: ${coffee.name} | Message: ${coffee.message} | Count: ${coffee.countCoffees}`
+                        );
+
                         if (reference.QR) {
                             this.socketService.sockets[reference.coffeeId].emit(
                                 "sendToThankYouPage",
@@ -108,10 +112,6 @@ class MercadoPagoController {
                                 }
                             );
                         }
-
-                        this.telegram.sendTelegramMessage(
-                            `Cafecito | ☕️ New Payment | Name: ${coffee.name} | Message: ${coffee.message} | Count: ${coffee.countCoffees}`
-                        );
                     }
                 }
             }
