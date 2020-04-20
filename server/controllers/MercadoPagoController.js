@@ -1,5 +1,6 @@
 class MercadoPagoController {
-    constructor(mercadoPagoService) {
+    constructor(coffeeService, mercadoPagoService) {
+        this.coffeeService = coffeeService;
         this.mercadoPagoService = mercadoPagoService;
 
         this.userId = "";
@@ -64,22 +65,12 @@ class MercadoPagoController {
     savePayment = async (req, res) => {
         const { id, topic } = req.query;
 
-        console.log(req.query);
-
         try {
             if (topic == "payment") {
                 const payment = await this.mercadoPagoService.getPayment(id);
 
-                console.log(payment);
-
                 if (payment.status === "approved") {
                     const reference = JSON.parse(payment.external_reference);
-
-                    console.log(
-                        reference,
-                        typeof reference,
-                        reference.coffeeId
-                    );
 
                     if (reference.coffeeId) {
                         const coffee = await this.coffeeService.updateCoffee(

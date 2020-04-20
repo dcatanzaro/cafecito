@@ -57,6 +57,7 @@ const CoffeeServiceInstance = new CoffeeService();
 
 const MercadoPagoController = require("./server/controllers/MercadoPagoController");
 const MercadoPagoInstance = new MercadoPagoController(
+    CoffeeServiceInstance,
     MercadoPagoServiceInstance
 );
 

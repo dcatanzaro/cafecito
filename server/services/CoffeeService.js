@@ -27,18 +27,12 @@ class CoffeeService {
     };
 
     updateCoffee = async (id, data) => {
-        try {
-            console.log(id, data);
-            const result = await Coffee.findOneAndUpdate(
-                { _id: id },
-                { $set: data }
-            ).lean();
+        const result = await Coffee.findOneAndUpdate(
+            { _id: id },
+            { $set: data }
+        ).lean();
 
-            return result;
-        } catch (e) {
-            console.log(e);
-            return {};
-        }
+        return result;
     };
 
     deleteCoffee = async (idCoffee) => {
