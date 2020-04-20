@@ -1,3 +1,5 @@
+const dayjs = require("dayjs");
+
 class MercadoPagoController {
     constructor(coffeeService, mercadoPagoService, socketService) {
         this.coffeeService = coffeeService;
@@ -31,6 +33,20 @@ class MercadoPagoController {
 
             this.storeId = store.id;
         }
+    };
+
+    deleteAllPosOld = async () => {
+        const arPos = await this.mercadoPagoService.getAllPos();
+
+        const actualDate = dayjs();
+
+        await arPos.results.map(async (pos) => {
+            const datePos = dayjs(pos.date_last_updated).add(1, "hour");
+
+            if (datePos < actualDate) {
+                await this.mercadoPagoService.deletePos(pos.id);
+            }
+        });
     };
 
     createQR = async (name, price, coffeeId) => {

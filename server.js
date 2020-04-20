@@ -73,6 +73,11 @@ const MercadoPagoInstance = new MercadoPagoController(
 );
 
 MercadoPagoInstance.createStore();
+MercadoPagoInstance.deleteAllPosOld();
+
+setInterval(() => {
+    MercadoPagoInstance.deleteAllPosOld();
+}, 1000 * 60 * 10);
 
 const CoffeeController = require("./server/controllers/CoffeeController");
 const CoffeeInstance = new CoffeeController(
