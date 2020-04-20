@@ -17,7 +17,7 @@ class MercadoPagoService {
                     coffeeId,
                 },
                 back_urls: {
-                    success: "https://cafecito.damiancatanzaro.com",
+                    success: process.env.URL,
                 },
                 auto_return: "approved",
                 payment_methods: {
@@ -49,6 +49,22 @@ class MercadoPagoService {
     getStores = async (userId) => {
         const result = await axios.get(
             `https://api.mercadopago.com/users/${userId}/stores/search?access_token=${process.env.ACCESS_KEY_MP}`
+        );
+
+        return result.data;
+    };
+
+    getAllPos = async () => {
+        const result = await axios.get(
+            `https://api.mercadopago.com/pos?limit=100&access_token=${process.env.ACCESS_KEY_MP}`
+        );
+
+        return result.data;
+    };
+
+    deletePos = async (posId) => {
+        const result = await axios.delete(
+            `https://api.mercadopago.com/pos/${posId}?access_token=${process.env.ACCESS_KEY_MP}`
         );
 
         return result.data;
@@ -124,8 +140,6 @@ class MercadoPagoService {
 
             return result.data;
         } catch (e) {
-            console.log(e);
-
             return {};
         }
     };

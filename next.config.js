@@ -14,6 +14,7 @@ module.exports = withCSS(
             URL: process.env.URL,
             SHOW_DATE_COFFEE:
                 process.env.SHOW_DATE_COFFEE === "true" ? true : false,
+            GA_ID: process.env.GA_ID,
         },
         cssModules: true,
         cssLoaderOptions: {

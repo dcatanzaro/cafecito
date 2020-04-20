@@ -1,8 +1,11 @@
+const dayjs = require("dayjs");
+
 class MercadoPagoController {
-    constructor(coffeeService, mercadoPagoService, socketService) {
+    constructor(coffeeService, mercadoPagoService, socketService, telegram) {
         this.coffeeService = coffeeService;
         this.mercadoPagoService = mercadoPagoService;
         this.socketService = socketService;
+        this.telegram = telegram;
 
         this.userId = "";
         this.storeId = "";
@@ -31,6 +34,20 @@ class MercadoPagoController {
 
             this.storeId = store.id;
         }
+    };
+
+    deleteAllPosOld = async () => {
+        const arPos = await this.mercadoPagoService.getAllPos();
+
+        const actualDate = dayjs();
+
+        await arPos.results.map(async (pos) => {
+            const datePos = dayjs(pos.date_last_updated).add(1, "hour");
+
+            if (datePos < actualDate) {
+                await this.mercadoPagoService.deletePos(pos.id);
+            }
+        });
     };
 
     createQR = async (name, price, coffeeId) => {
@@ -85,12 +102,19 @@ class MercadoPagoController {
                         this.coffeeService.createImageShare(coffee);
 
                         if (reference.QR) {
-                            this.socketService.sockets[reference.coffeeId].emit(
-                                "sendToThankYouPage",
-                                {
-                                    coffeeId: reference.coffeeId,
-                                }
-                            );
+                            const socket = this.socketService.sockets[
+                                reference.coffeeId
+                            ];
+
+                            socket.emit("sendToThankYouPage", {
+                                coffeeId: reference.coffeeId,
+                            });
+
+                            socket.disconnect();
+
+                            delete this.socketService.sockets[
+                                reference.coffeeId
+                            ];
                         }
 
                         this.telegram.sendTelegramMessage(
