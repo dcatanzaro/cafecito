@@ -25,7 +25,7 @@ const InputText = ({ isMobile }) => {
         const socket = io(`${process.env.URL}`);
 
         socket.on("sendToThankYouPage", (data) => {
-            window.location.href = `${process.env.URL}?external_reference={coffeeId:${data.coffeeId}}`;
+            window.location.href = `${process.env.URL}?external_reference={"coffeeId":"${data.coffeeId}"}`;
         });
 
         setLoading(true);
