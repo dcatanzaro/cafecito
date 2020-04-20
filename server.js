@@ -71,7 +71,8 @@ const MercadoPagoController = require("./server/controllers/MercadoPagoControlle
 const MercadoPagoInstance = new MercadoPagoController(
     CoffeeServiceInstance,
     MercadoPagoServiceInstance,
-    SocketServiceInstance
+    SocketServiceInstance,
+    telegram
 );
 
 MercadoPagoInstance.createStore();

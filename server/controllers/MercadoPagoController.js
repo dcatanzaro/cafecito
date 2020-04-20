@@ -1,10 +1,11 @@
 const dayjs = require("dayjs");
 
 class MercadoPagoController {
-    constructor(coffeeService, mercadoPagoService, socketService) {
+    constructor(coffeeService, mercadoPagoService, socketService, telegram) {
         this.coffeeService = coffeeService;
         this.mercadoPagoService = mercadoPagoService;
         this.socketService = socketService;
+        this.telegram = telegram;
 
         this.userId = "";
         this.storeId = "";
@@ -101,20 +102,20 @@ class MercadoPagoController {
                         this.coffeeService.createImageShare(coffee);
 
                         if (reference.QR) {
-                            (() => {
-                                const socket = this.socketService.sockets[
-                                    reference.coffeeId
-                                ];
+                            const socket = this.socketService.sockets[
+                                reference.coffeeId
+                            ];
 
-                                socket.emit("sendToThankYouPage", {
-                                    coffeeId: reference.coffeeId,
-                                });
+                            socket.emit("sendToThankYouPage", {
+                                coffeeId: reference.coffeeId,
+                            });
 
-                                socket.close();
-                            })();
+                            socket.disconnect();
+
+                            delete this.socketService.sockets[
+                                reference.coffeeId
+                            ];
                         }
-
-                        console.log("send telegram");
 
                         this.telegram.sendTelegramMessage(
                             `Cafecito | ☕️ New Payment | Name: ${coffee.name} | Message: ${coffee.message} | Count: ${coffee.countCoffees}`
