@@ -100,18 +100,27 @@ class MercadoPagoController {
 
                         this.coffeeService.createImageShare(coffee);
 
+                        if (reference.QR) {
+                            const socket = this.socketService.sockets[
+                                reference.coffeeId
+                            ];
+
+                            console.log(socket.id);
+
+                            socket.emit("sendToThankYouPage", {
+                                coffeeId: reference.coffeeId,
+                            });
+
+                            socket.close();
+
+                            console.log("socket close");
+                        }
+
+                        console.log("send telegram");
+
                         this.telegram.sendTelegramMessage(
                             `Cafecito | ☕️ New Payment | Name: ${coffee.name} | Message: ${coffee.message} | Count: ${coffee.countCoffees}`
                         );
-
-                        if (reference.QR) {
-                            this.socketService.sockets[reference.coffeeId].emit(
-                                "sendToThankYouPage",
-                                {
-                                    coffeeId: reference.coffeeId,
-                                }
-                            );
-                        }
                     }
                 }
             }
