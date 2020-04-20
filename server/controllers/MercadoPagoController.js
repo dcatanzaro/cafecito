@@ -101,19 +101,17 @@ class MercadoPagoController {
                         this.coffeeService.createImageShare(coffee);
 
                         if (reference.QR) {
-                            const socket = this.socketService.sockets[
-                                reference.coffeeId
-                            ];
+                            (() => {
+                                const socket = this.socketService.sockets[
+                                    reference.coffeeId
+                                ];
 
-                            console.log(socket.id);
+                                socket.emit("sendToThankYouPage", {
+                                    coffeeId: reference.coffeeId,
+                                });
 
-                            socket.emit("sendToThankYouPage", {
-                                coffeeId: reference.coffeeId,
-                            });
-
-                            socket.close();
-
-                            console.log("socket close");
+                                socket.close();
+                            })();
                         }
 
                         console.log("send telegram");
