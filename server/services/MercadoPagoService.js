@@ -104,6 +104,14 @@ class MercadoPagoService {
                         quantity: 1,
                     },
                 ],
+                external_reference: {
+                    coffeeId,
+                    QR: true,
+                },
+                payment_methods: {
+                    installments: 1,
+                    default_installments: 1,
+                },
             }),
             {
                 headers: {
