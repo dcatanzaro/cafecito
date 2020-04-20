@@ -75,7 +75,11 @@ class MercadoPagoController {
                 if (payment.status === "approved") {
                     const reference = JSON.parse(payment.external_reference);
 
-                    console.log(reference);
+                    console.log(
+                        reference,
+                        typeof reference,
+                        reference.coffeeId
+                    );
 
                     if (reference.coffeeId) {
                         const coffee = await this.coffeeService.updateCoffee(
