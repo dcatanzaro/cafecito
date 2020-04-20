@@ -85,11 +85,12 @@ class MercadoPagoController {
                         this.coffeeService.createImageShare(coffee);
 
                         if (reference.QR) {
-                            this.socketService.sockets[
-                                reference.coffeeId
-                            ].emit("sendToThankYouPage", {
-                                coffeeId: reference.coffeeId,
-                            });
+                            this.socketService.sockets[reference.coffeeId].emit(
+                                "sendToThankYouPage",
+                                {
+                                    coffeeId: reference.coffeeId,
+                                }
+                            );
                         }
 
                         this.telegram.sendTelegramMessage(
