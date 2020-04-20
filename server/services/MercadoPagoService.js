@@ -105,10 +105,10 @@ class MercadoPagoService {
                             quantity: 1,
                         },
                     ],
-                    external_reference: {
+                    external_reference: JSON.stringify({
                         coffeeId,
                         QR: true,
-                    },
+                    }),
                     payment_methods: {
                         installments: 1,
                         default_installments: 1,
@@ -124,7 +124,7 @@ class MercadoPagoService {
 
             return result.data;
         } catch (e) {
-            console.log(e.message);
+            console.log(e);
 
             return {};
         }
