@@ -1,7 +1,8 @@
 class MercadoPagoController {
-    constructor(coffeeService, mercadoPagoService) {
+    constructor(coffeeService, mercadoPagoService, socketService) {
         this.coffeeService = coffeeService;
         this.mercadoPagoService = mercadoPagoService;
+        this.socketService = socketService;
 
         this.userId = "";
         this.storeId = "";
@@ -82,6 +83,14 @@ class MercadoPagoController {
                         );
 
                         this.coffeeService.createImageShare(coffee);
+
+                        if (reference.QR) {
+                            this.socketService.sockets[
+                                reference.coffeeId
+                            ].emit("sendToThankYouPage", {
+                                coffeeId: reference.coffeeId,
+                            });
+                        }
 
                         this.telegram.sendTelegramMessage(
                             `Cafecito | ☕️ New Payment | Name: ${coffee.name} | Message: ${coffee.message} | Count: ${coffee.countCoffees}`

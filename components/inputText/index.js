@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import style from "./style.scss";
+import io from "socket.io-client";
 
 import QR from "../QR/index";
+
+import style from "./style.scss";
 
 import axios from "axios";
 
@@ -20,6 +22,12 @@ const InputText = ({ isMobile }) => {
     });
 
     const sendCoffee = async () => {
+        const socket = io(`${process.env.URL}`);
+
+        socket.on("sendToThankYouPage", (data) => {
+            window.location.href = `${process.env.URL}?external_reference={coffeeId:${data.coffeeId}}`;
+        });
+
         setLoading(true);
 
         const url = `${process.env.URL}/api/send_coffee`;
@@ -34,6 +42,10 @@ const InputText = ({ isMobile }) => {
         if (isMobile) {
             window.location.href = result.data.mercadoPagoLink;
         } else {
+            socket.emit("assignCoffeeId", {
+                coffeeId: result.data.coffeeId,
+            });
+
             setMercadoPagoData(result.data);
             setFetchComplete(true);
         }

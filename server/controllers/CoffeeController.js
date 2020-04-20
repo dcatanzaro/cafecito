@@ -57,6 +57,7 @@ class CoffeeController {
             );
 
             body.qr = _.get(qrImage, "pos.qr.image");
+            body.coffeeId = result._id;
         }
 
         return res.json(body);
