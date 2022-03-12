@@ -1,7 +1,7 @@
 const _ = require("lodash");
 
 class CoffeeController {
-    constructor(telegram, coffeeService, mercadoPagoController) {
+    constructor({ telegram, coffeeService, mercadoPagoController }) {
         this.telegram = telegram;
         this.coffeeService = coffeeService;
         this.mercadoPagoController = mercadoPagoController;

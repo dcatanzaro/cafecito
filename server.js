@@ -7,7 +7,6 @@ dotenv.config({ path: envFile });
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server);
 
 const next = require("next");
 const routes = require("./routes");
@@ -15,10 +14,11 @@ const routes = require("./routes");
 const nextApp = next({ dev: isDev });
 const handler = routes.getRequestHandler(nextApp);
 const bodyParser = require("body-parser");
-const axios = require("axios");
 const compression = require("compression");
 
 const mongoose = require("mongoose");
+
+const container = require("./server/config/container")
 
 let urlMongo = "";
 
@@ -36,42 +36,7 @@ mongoose.connect(urlMongo, {
     useFindAndModify: false,
 });
 
-class Telegram {
-    sendTelegramMessage(message) {
-        const botId = process.env.TELEGRAM_BOTID;
-        const chatId = process.env.TELEGRAM_CHATID;
-
-        if (!botId || !chatId) {
-            return;
-        }
-
-        const telegramMsg = encodeURIComponent(message);
-
-        const url = `https://api.telegram.org/${botId}/sendMessage?chat_id=${chatId}&text=${telegramMsg}`;
-        axios.get(url);
-    }
-}
-
-const telegram = new Telegram();
-
-const SocketService = require("./server/services/SocketService");
-const SocketServiceInstance = new SocketService(io);
-
-SocketServiceInstance.initialize();
-
-const MercadoPagoService = require("./server/services/MercadoPagoService");
-const MercadoPagoServiceInstance = new MercadoPagoService();
-
-const CoffeeService = require("./server/services/CoffeeService");
-const CoffeeServiceInstance = new CoffeeService();
-
-const MercadoPagoController = require("./server/controllers/MercadoPagoController");
-const MercadoPagoInstance = new MercadoPagoController(
-    CoffeeServiceInstance,
-    MercadoPagoServiceInstance,
-    SocketServiceInstance,
-    telegram
-);
+const MercadoPagoInstance = container.resolve("mercadoPagoController")
 
 MercadoPagoInstance.createStore();
 MercadoPagoInstance.deleteAllPosOld();
@@ -80,12 +45,7 @@ setInterval(() => {
     MercadoPagoInstance.deleteAllPosOld();
 }, 1000 * 60 * 10);
 
-const CoffeeController = require("./server/controllers/CoffeeController");
-const CoffeeInstance = new CoffeeController(
-    telegram,
-    CoffeeServiceInstance,
-    MercadoPagoInstance
-);
+const CoffeeInstance = container.resolve("coffeeController")
 
 CoffeeInstance.getCoffeesWithoutImages();
 

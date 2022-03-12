@@ -2,6 +2,8 @@ class SocketService {
     constructor(io) {
         this.io = io;
         this.sockets = {};
+
+        this.initialize();
     }
 
     initialize = () => {
