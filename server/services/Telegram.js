@@ -14,4 +14,4 @@ module.exports = class Telegram {
         const url = `https://api.telegram.org/${botId}/sendMessage?chat_id=${chatId}&text=${telegramMsg}`;
         axios.get(url);
     }
-}
+};

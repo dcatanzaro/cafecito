@@ -18,7 +18,7 @@ const compression = require("compression");
 
 const mongoose = require("mongoose");
 
-const container = require("./server/config/container")
+const container = require("./server/config/container");
 
 let urlMongo = "";
 
@@ -36,7 +36,7 @@ mongoose.connect(urlMongo, {
     useFindAndModify: false,
 });
 
-const MercadoPagoInstance = container.resolve("mercadoPagoController")
+const MercadoPagoInstance = container.resolve("mercadoPagoController");
 
 MercadoPagoInstance.createStore();
 MercadoPagoInstance.deleteAllPosOld();
@@ -45,7 +45,7 @@ setInterval(() => {
     MercadoPagoInstance.deleteAllPosOld();
 }, 1000 * 60 * 10);
 
-const CoffeeInstance = container.resolve("coffeeController")
+const CoffeeInstance = container.resolve("coffeeController");
 
 CoffeeInstance.getCoffeesWithoutImages();
 
@@ -82,3 +82,5 @@ nextApp.prepare().then(() => {
         `Server started on port ${process.env.PORT} | Url: ${process.env.URL}`
     );
 });
+
+module.exports = server;

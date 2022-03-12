@@ -1,7 +1,12 @@
 const dayjs = require("dayjs");
 
 class MercadoPagoController {
-    constructor({ coffeeService, mercadoPagoService, socketService, telegram }) {
+    constructor({
+        coffeeService,
+        mercadoPagoService,
+        socketService,
+        telegram,
+    }) {
         this.coffeeService = coffeeService;
         this.mercadoPagoService = mercadoPagoService;
         this.socketService = socketService;
